@@ -17,7 +17,12 @@ Your Http server/PHP/POSTGRESQL stack should first be assessed. The Http server 
 ### Database setup
 1. Create an account for the MARS system in POSTGRESQL and create a database named 'mars'.
 2. The system provides a SQL file "mars-server/dbsetup.sql" for database setup. Execute this file with the above account.
-3. Configure the file "mars-server/dbparams.php" with the credentials used at step 1.
+3. Copy the file "mars-server/dbparams.sample.php" to "mars-server/dbparams.php" and edit it to fill in the credentials used at step 1:
+```bash
+cd mars
+cp mars-server/dbparams.sample.php mars-server/dbparams.php
+nano mars-server/dbparams.php
+```
 
 ### Web server setup
 Deploy the MARS file hierarchy (its root is the 'mars' directory) according to your web server environment. 
