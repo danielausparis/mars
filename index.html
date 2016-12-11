@@ -1,1 +1,153 @@
-<h1>Hello guys</h1>
+<h2>Introduction</h2>
+<p>
+  MARS is a browser-based
+  <a target="_blank" href="https://en.wikipedia.org/wiki/Audience_response#Audience_response_systems">
+  Audience Response System</a> dedicated to e.g. teachers,
+  moderators to support their courses to evaluate knowledge, assess opinions or
+  illustrate concepts, or just for fun!
+</p>
+<p>
+  MARS is published under the GNU GPLv3 open source licence and is free. Polls
+  remain completely under your control and can be shared if, and only if,
+  you choose to do so.
+</p>
+<p>
+  MARS puts the control on the poll material back into your own hands, as opposed
+  to many online commercial products that take away from you the ownership as well as
+  the control over your intellectual property, in order to make profits.
+</p>
+
+<h2>Vocabulary</h2>
+<p>
+  MARS uses following concepts:
+</p>
+<ul>
+  <li>the poll</li>
+  <p>
+    The poll is a set of questions. A poll can be created and edited in the system
+    and
+    can furthermore be exported/imported (easy JSON files) and shared e.g. via simple
+    email.
+  </p>
+  <li>poll types</li>
+  <p>
+    Polls have a <i>type</i> that is determined at creation time depending
+    on the intention of the poll author. Two types are
+    defined:
+    <ul>
+      <li>the <i>quiz</i> type</li>
+      <p>
+        The quiz type of poll is preferred for evaluation purposes. Results
+        will display falsy/truthy answers and scores that
+        can be directly used for rating purposes.
+      </p>
+      <li>the <i>poll</i> type</li>
+      <p>
+        The poll type of poll (sorry for redundancy) is preferred for
+        opinion assessment or situations where evaluation and scores are
+        not relevant. Results will just display choices without scoring.
+      </p>
+    </ul>
+  </p>
+  <li>the session</li>
+  <p>
+    The <i>session</i> is the live execution of a poll. Sessions consist of
+    question display and score/result evaluation. Sessions are stored and can be
+    retrieved and displayed later for testimony purposes. Moreover, sessions
+    can be re-played, providing cumulative result recording among
+    multiple student groups.
+  </p>
+  <li>the session play modes</li>
+    <p>
+      Sessions can have one of two <i>play modes</i> determined at session start time :
+    </p>
+    <ul>
+      <li>
+        the <i>normal mode</i> where students will see all
+        questions simultaneously on their client application, thus focusing
+        attention on their
+        terminals. The teacher screen will meanwhile display results, scores and answers
+        in real time. Session duration is under teacher's manual control.
+      </li>
+      <li>
+        the <i>group mode</i> where the teacher screen will display the questions
+        one at a time, so that student attention will be focused collectively
+        on the teacher screen. Their client application will only display
+        choice means for one question at a time. Realtime aspects are in the
+        foreground and question display duration as well as session duration are
+        automated and determined by the poll author during question editing.
+        Results and scores will be displayed at the end of the
+        session.
+      </li>
+    </ul>
+  </li>
+  <p></p>
+  <li>roles and software applications</li>
+    <p>
+      <ul>
+        <li>the <i>teacher role</i> relies on the usage of the <i>MARS manager
+          application</i> (yes correct, actually this page is part of it).
+        </li>
+        <li>the <i>student role</i> is supported by the <i>MARS client application
+          </i>. The URL of this application is displayed at session start time for
+          all to see.
+        </li>
+      </ul>
+    </p>
+  </li>
+</ul>
+
+<style media="screen">
+  .myimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%
+  }
+</style>
+
+
+<h2>Poll management</h2>
+  <p>
+    Polls are managed via the <i>Polls</i> top menu bar option. The screen will
+    display a list of all available polls in your local system. The action icons
+    associated to any given poll will determine following activities :
+  </p>
+  <img class="myimg" src="images/polls-fig1-full.jpg" alt="polls fig 1">
+
+  <h3>Poll creation</h3>
+  <p>
+    To create a new poll, click on the green button labelled "create a new poll"
+    at the top of the list. A pop-up will appear where you can fill in the title
+    of the new poll, as well as choose (mandatory) the poll type (see definition
+    above : quiz or poll type). This will initialize a new, empty poll.
+  </p>
+
+  <h3>Poll edition</h3>
+  <p>
+    The poll editor allows, much like a slide sorter in presentation software,
+    to add questions, to modify question ordering and to delete questions.
+  </p>
+
+  <h3>Question edition</h3>
+  <p>
+    TODO
+  </p>
+
+  <h3>Poll usage</h3>
+  <p>
+    TODO
+  </p>
+
+
+<h2>Session management</h2>
+<h3>Session list</h3>
+<p>
+  TODO
+</p>
+
+<h2>Techie section</h2>
+<p>
+  MARS is a client-server application based on Angular (client side) and PHP
+  (server side). The database is PostGresql.
+</p>
