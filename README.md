@@ -22,6 +22,6 @@ Your Http server/PHP/POSTGRESQL stack should first be assessed. The Http server 
 ### Web server setup
 Deploy the MARS file hierarchy (its root is the 'mars' directory) according to your web server environment. 
 ### Test
-The system should respond with the URL https://yourmachine.yourdomain/mars/mars-manager
+The system should respond with the URL https://yourmachine.yourdomain/mars/mars-manager. Default login is "admin", password "admin". Change your password.
 
 
