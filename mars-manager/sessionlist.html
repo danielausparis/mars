@@ -1,0 +1,80 @@
+<div ng-controller="SessionListController">
+
+  <!-- alert -->
+  <div id="alertmodal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top"
+      style="margin: auto; margin-top: 100px; width: 300px">
+      <div class="w3-container w3-red w3-padding">
+        <h5>Are you sure...</h5>
+        ...to delete session {{sessiontodelete}} ?
+        <br><br>
+        <div>
+          <button type="button" class="w3-btn w3-round-small w3-left w3-small w3-light-green"
+            ng-click="alertcancelbuttonhandler()">Cancel</button>
+          <button type="button" class="w3-btn w3-round-small w3-right w3-small w3-orange"
+            ng-click="deletesession(sessiontodelete)">Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-animate-top"
+    style="max-width:90%; margin: auto; margin-top: 150px;">
+
+    <ul class="w3-navbar w3-large w3-theme-complement-2">
+      <li style="margin-left: 20px"><h3>Available sessions</h3></li>
+    </ul>
+
+    <div class="w3-responsive">
+      <table class='w3-table w3-striped w3-table-all'>
+        <tr>
+          <th>title</th>
+          <th>Author name</th>
+          <th>first name</th>
+          <th>date</th>
+          <th>type</th>
+          <th>mode</th>
+          <th>id</th>
+          <th>status</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr ng-repeat="session in sessions">
+          <td>{{session.title}}</td>
+          <td>{{session.authorname}}</td>
+          <td>{{session.authorfirstname}}</td>
+          <td>{{session.userdate}}</td>
+          <td>{{session.poll.type}}</td>
+          <td>{{session.mode}}</td>
+          <td>{{session.id}}</td>
+          <td>{{session.status}}</td>
+          <td ng-if="isdifflauncher($index)"></td>
+          <td ng-if="!isdifflauncher($index)">
+            <a href="" ng-click="deletesessionbuttonhandler(session.id)"
+              title="delete">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+          </td>
+          <td>
+            <a href=""
+              ng-click="viewsession(session)"
+              title="view results">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </a>
+          </td>
+          <td ng-if="isdifflauncher($index)"></td>
+          <td ng-if="!isdifflauncher($index)">
+            <button type="button" class="w3-btn w3-theme-l3 w3-small w3-round-small"
+              ng-click="replaysession(session)">
+              cumulative replay
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+  <br><br>
+
+</div>

@@ -1,0 +1,88 @@
+
+<div ng-controller="RunningController">
+
+  <div id="runningmodal" class="w3-modal">
+    <div class="w3-modal-content w3-card-4"
+      style = "max-width:300px; margin: auto !important">
+
+      <header class="w3-container w3-theme-complement-2">
+        <h2>Session started !</h2>
+      </header>
+
+      <div class="w3-container w3-theme-light-background">
+        <p>Happy session !</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="finishedmodal" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content w3-card-4"
+      style = "max-width:300px; margin: auto !important">
+
+      <header class="w3-container w3-theme-complement-2">
+        <h2>Session finished !</h2>
+      </header>
+
+      <div class="w3-container w3-theme-light-background">
+        <p>Thanks for using MARS</p>
+        <button ng-click="closefinishedmodal()" style="width:100px" type="button"
+          class="w3-btn w3-round-small w3-padding w3-right w3-light-green w3-ripple">
+          Ok
+        </button>
+        <br><br><br>
+      </div>
+    </div>
+  </div>
+
+  <div class="" style="height: 70px;">
+    <!-- filler -->
+  </div>
+
+  <div style="text-align:center;" ng-if="mode == 'normal'">
+    <button ng-click="answerButtonHandler()" style="width:300px" type="button"
+      class="w3-btn w3-round-small w3-center w3-light-green w3-ripple">
+      <span ng-bind-html="buttonLabel"></span></button>
+  </div>
+
+  <br>
+
+  <div id="questionzone" class="flex-container">
+
+    <div class="w3-card-4 w3-round-small flex-item w3-margin"
+      ng-repeat ="question in questions" style='width:320px'>
+
+      <header class="w3-container w3-theme-complement-2">
+        <h4>Question {{ question.number }}</h4>
+      </header>
+
+      <div class="w3-theme-complement-1 preview"
+        ng-if="mode == 'normal'"
+        style="height:200px; width:320px"
+        ng-bind-html="html(question.text)">
+      </div>
+
+      <footer class="w3-container w3-testbackground">
+        <div class="w3-padding">
+          <div ng-repeat="cbox in question.checkboxes track by $index" style="display: inline">
+            <label style="font-size: 200%;">{{ $index + 1 }}:</label>
+            <input class="w3-check" type="checkbox" style="font-size: 200%;"
+              ng-model="questions[$parent.$index].checkboxes[$index]">
+            &nbsp;&nbsp;
+          </div>
+        </div>
+        <br>
+      </footer>
+
+    </div>
+  </div>
+
+  <br>
+  <div ng-if="status == 'running'" style="text-align:center">
+    <button ng-click="answerButtonHandler()" style="width:300px" type="button"
+      class="w3-btn w3-round-small w3-center w3-light-green w3-ripple">
+      <span ng-bind-html="buttonLabel"></span></button>
+  </div>
+  <br>
+  <br>
+
+</div>

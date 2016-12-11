@@ -1,0 +1,40 @@
+<div ng-controller="AddPollController">
+
+  <div class="w3-card-4 w3-animate-top"
+    style="margin: auto; margin-top: 130px; width: 100%; max-width: 350px;">
+
+    <header class="w3-container w3-theme-complement-2">
+      <h2>Create new poll</h2>
+    </header>
+
+    <form>
+      <div class="w3-container w3-theme-light-background">
+        <br>
+        <div class="group">
+          <input class="w3-input w3-theme-light-background w3-animate-input"
+            type="text" ng-model="title">
+          <span class="bar"></span>
+          <label class="w3-label w3-validate w3-text-dark-grey">poll title</label>
+        </div>
+        type :
+        <input class="w3-radio" type="radio" name="type"
+          value="quiz" ng-model="radioquiz" checked>
+        <label class="w3-validate">quiz</label>
+        <input class="w3-radio" type="radio" name="type"
+          value="poll" ng-model="radiopoll">
+        <label class="w3-validate">poll</label>
+
+        <br><br>
+      </div>
+
+      <div class="w3-container w3-padding-16 w3-theme-complement-2">
+        <button ng-click="cancelbuttonhandler()"
+          class="w3-btn w3-round-small w3-red">Cancel</button>
+        <button ng-click="addpollbuttonhandler()" style="width:40%"
+          class="w3-btn w3-round-small w3-right w3-light-green">Submit</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

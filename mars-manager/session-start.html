@@ -1,0 +1,75 @@
+<div class="w3-margin w3-animate-top"
+ng-controller="SessionController"
+style="margin-top:-62px !important">
+
+  <div class="w3-threequarter w3-margin w3-card-8">
+
+    <ul class="w3-navbar w3-large w3-padding w3-theme-d5">
+      <li><h2>Session of poll : {{ statics.session.poll.name }}</h2></li>
+      <li class="w3-right">
+        <button class="w3-btn w3-large w3-light-blue w3-ripple w3-round-small"
+          ng-click="homebuttonhandler()"
+          ng-disabled="statics.status != 'finished'"
+          style="margin-top:10px; margin-left:20px">
+          Home
+        </button>
+      </li>
+      <li class="w3-right">
+        <button class="w3-btn w3-large w3-orange w3-ripple w3-round-small"
+          ng-click="closebuttonhandler()"
+          style="margin-top:10px; margin-left:20px">
+          Cancel session
+        </button>
+      </li>
+    </ul>
+
+
+    <div class="w3-container w3-theme-complement-1">
+      <h3>URL : <b>{{ statics.quizUrl }}</b></h3>
+      <h3 style="display: inline">Session identifier : </h3>
+      <h1 style="display: inline"><b>{{ statics.session.id }}</b></h1>
+      &nbsp;&nbsp;&nbsp; <h3 style="display: inline">PIN : </h3>
+      <h1 style="display: inline"><b>{{ statics.session.secret }}</b></h1>
+
+      <div class="w3-padding w3-right" style="display: inline">
+        <button ng-click="statusButtonHandler('running')" type="button" style="width:120px"
+          class="w3-btn w3-light-green w3-border w3-border-grey w3-ripple w3-round-small"
+          title="start">
+          <i class="fa fa-play w3-large" aria-hidden="true"></i>
+        </button>
+
+        <div ng-if="statics.session.mode=='normal'" style="display: inline">
+          <button ng-click="statusButtonHandler('waiting')" type="button" style="width:120px"
+            class="w3-btn w3-orange w3-border w3-border-grey w3-ripple w3-round-small"
+            title="pause">
+            <i class="fa fa-pause w3-large" aria-hidden="true"></i>
+          </button>
+          <button ng-click="statusButtonHandler('finished')" type="button" style="width:120px"
+            class="w3-btn w3-red w3-border w3-border-grey w3-ripple w3-round-small"
+            title="finish">
+            <i class="fa fa-stop w3-large w3-text-black" aria-hidden="true"></i>
+          </button>
+        </div>
+
+      </div>
+      <br><br>
+    </div>
+  </div>
+
+  <div class="w3-rest w3-margin w3-card-8" ng-controller="StatusController">
+    <div class="w3-container w3-theme-d5">
+      <h2>Status</h2>
+    </div>
+    <div class="w3-container w3-padding w3-theme-complement-1">
+      <h5 style="display: inline">Enrolled : </h5>
+        <h1 style="display: inline"><b>{{ statics.participantnumber }}</b></h1>
+      <br>
+      <h5 style="display: inline">Status : </h5>
+        <h1 style="display: inline"><b>{{ statics.status }}</b></h1>
+      <h5>Mode : <b class="w3-text-deep-orange">{{ statics.session.mode }}</b></h5>
+    </div>
+  </div>
+
+  <div ng-if="statics.session.mode == 'normal'" ng-include src="'results.html'"></div>
+
+</div>

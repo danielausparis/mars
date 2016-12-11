@@ -1,0 +1,86 @@
+<div ng-controller="EditPollController">
+
+  <div class="w3-card-4 w3-animate-top"
+    style="max-width:90%; margin: auto; margin-top: 100px;">
+    <ul class="w3-navbar w3-theme-complement-2">
+      <li style="margin-left: 20px">
+        <h3>Poll {{ pollid }} : <i>{{ polltitle }}</i>, by {{ poll.author.firstname }}
+          {{ poll.author.name }} - {{ poll.questions.length || 0 }} questions
+        </h3>
+      </li>
+      <li class="w3-right" style="margin-top: 10px">
+        <span ng-show="canwrite">
+          <button type="button" class="w3-btn w3-round-small w3-light-green"
+          style="margin-right: 20px" ng-click="gotoeditnewquestion()">
+          Add a question</button>
+        </span>
+        <button type="button" class="w3-btn w3-round-small w3-grey"
+        style="margin-right: 20px" ng-click="gobacktopolls()">
+        Close</button>
+      </li>
+    </ul>
+
+    <div class="w3-padding w3-theme-light-background">
+      <div class="flex-container">
+
+        <div class="" ng-repeat="question in poll.questions">
+
+          <!-- show one question -->
+          <div class='w3-padding'>
+
+            <div class='w3-card-4 flex-item w3-theme-complement-2' style='width:300px'>
+
+              <header class='w3-container w3-theme-complement-2'>
+              <h4>Question {{ question.number }}</h4>
+              </header>
+
+              <div class='w3-btn-group' ng-show="canwrite">
+                <form class='w3-btn w3-cyan' style='display: inline'>
+                  <input type='submit' value='^' class='inputnodeco'
+                    ng-click="movequestion(pollid, question.id, '-')"
+                    title="move one step up">
+                </form>
+                <form class='w3-btn w3-indigo' style='display: inline'>
+                  <input type='submit' value='v' class='inputnodeco'
+                    ng-click="movequestion(pollid, question.id, '+')"
+                    title="move one step down">
+                </form>
+                <form class='w3-btn w3-red' style='display: inline'>
+                    <input type='submit' value='X' class='inputnodeco'
+                      ng-click="movequestion(pollid, question.id, 'X')"
+                      title="delete">
+                </form>
+
+                <button class='w3-btn w3-right w3-orange' type='button'
+                  ng-click="gotoeditquestion(pollid, question)">
+                  Edit
+                </button>
+              </div>
+
+              <div class='w3-theme-complement-1 preview'
+              style='height:200px; width:300px'
+               ng-bind-html="html(question.text)">
+              </div>
+
+              <div class='w3-theme-complement-2'>
+                <div class='w3-padding'>
+                  True :
+                  <span ng-repeat="checkedval in question.checkboxesmodel track by $index">
+                    <input class="smallcheckbox" type='checkbox'
+                      ng-checked="checkedval" disabled='true'>
+                  </span>
+                  <span class="w3-small"> t : {{question.text.duration}}s</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

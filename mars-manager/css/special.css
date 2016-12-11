@@ -1,0 +1,13 @@
+
+.inputnodeco {
+  background:none;
+  border:none;
+}
+
+.inputline {
+  margin-top: 3px;
+}
+
+input[type=checkbox].smallcheckbox {
+  transform: scale(0.7);
+}

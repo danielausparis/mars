@@ -1,0 +1,63 @@
+<div ng-controller="RegistrationController">
+
+  <div class="w3-card-4 w3-animate-top"
+    style="margin: auto; margin-top: 130px; width: 100%; max-width: 350px;">
+
+    <header class="w3-container w3-theme-complement-2">
+      <h2>New user registration</h2>
+    </header>
+
+    <form name="registrationform">
+      <div class="w3-container w3-theme-light-background">
+        <br>
+        <div class="group">
+          <input class="w3-input w3-theme-light-background w3-animate-input"
+            type="text" ng-model="logindata.firstname" required>
+          <span class="bar"></span>
+          <label class="w3-label w3-validate w3-text-dark-grey">first name</label>
+        </div>
+
+        <div class="group">
+          <input class="w3-input w3-theme-light-background w3-animate-input"
+            type="text" ng-model="logindata.name" required>
+          <span class="bar"></span>
+          <label class="w3-label w3-validate w3-text-dark-grey">name</label>
+        </div>
+
+        <div class="group">
+          <input class="w3-input w3-theme-light-background w3-animate-input"
+            type="email" ng-model="logindata.email" required>
+          <span class="bar"></span>
+          <label class="w3-label w3-validate w3-text-dark-grey">
+            email (only valid email can be processed)
+          </label>
+        </div>
+
+        <div class="group">
+          <input class="w3-input w3-theme-light-background w3-animate-input"
+            type="text" ng-model="logindata.nickname" required>
+          <span class="bar"></span>
+          <label class="w3-label w3-validate w3-text-dark-grey">nickname</label>
+        </div>
+
+        <div class="group">
+          <input class="w3-input w3-theme-light-background w3-animate-input"
+            type="password" ng-model="logindata.password" required>
+          <span class="bar"></span>
+          <label class="w3-label w3-validate w3-text-dark-grey">password</label>
+        </div>
+        <br>
+      </div>
+
+      <div class="w3-container w3-padding-16 w3-theme-complement-2">
+        <button ng-click="cancelbuttonhandler()"
+          class="w3-btn w3-round-small w3-red">Cancel</button>
+        <button ng-click="registrationbuttonhandler()" style="width:40%"
+          class="w3-btn w3-round-small w3-right w3-light-green"
+          ng-disabled="registrationform.$invalid">Submit</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

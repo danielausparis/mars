@@ -1,0 +1,104 @@
+
+/*
+@media (max-width:601px){.w3-modal-content{margin:50px 50px 10px 50px;width:auto !important}}
+*/
+
+.w3-animate-top{
+position:relative;-webkit-animation-name:animatetop;-webkit-animation-duration:0.4s;animation-name:animatetop;animation-duration:0.4s}
+@-webkit-keyframes animatetop{from{top:-3px;opacity:0} to{top:0;opacity:1}}
+@keyframes animatetop{from{top:-3px;opacity:0} to{top:0;opacity:1}}
+
+textarea {
+     width: 100%;
+     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+     box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+@font-face {
+font-family: 'Futura LT Book';
+src: url('futura-lt-book.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+
+/*
+html,body{font-family:'Futura LT Book';font-size:14px; line-height:1.5}
+*/
+html,body {
+  font-family:'Futura LT Book' ;
+}
+
+i,input,label {
+  opacity: 0.8;
+}
+
+label {
+  font-size:12px;
+}
+h1,h2,h3,h4,h5,h6,p,li {
+  font-family:'Futura LT Book';
+  font-weight:400;
+  opacity: 0.8;
+  /*margin:10px 0*/
+}
+
+/*.w3-striped tbody tr:nth-child(even){background-color:#D9D5C0}*/
+.w3-striped tbody tr:nth-child(odd){background-color:#D9D5C0}
+
+a.mypanel:hover {
+  background-color:darkgrey
+}
+a.mypanel {
+  font-size:17px;
+  height:30px
+}
+
+.w3-input {
+  padding:8px;
+  display:block;
+  border:none;
+  border-bottom:1px solid #808080;
+  width:100%;
+  /*transition: 0.5s ease;*/
+}
+/*
+.w3-input:focus {
+  border-bottom:2px solid #808080;
+  width:100%;
+}
+*/
+
+/* https://scotch.io/tutorials/google-material-design-input-boxes-in-css3 */
+.group {
+
+}
+/* BOTTOM BARS ================================= */
+.bar  { position:relative; display:block; width:100%; }
+.bar:before, .bar:after   {
+  content:'';
+  height:2px;
+  width:0;
+  bottom:1px;
+  position:absolute;
+  /*background:#5264AE;*/
+  /*background:#9f5b88;*/
+  background: grey;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%;
+}
+
+/* active state */
+.w3-input:focus ~ .bar:before, .w3-input:focus ~ .bar:after {
+  width:50%;
+}
+
+input[type=checkbox].w3-check:checked+.w3-validate,input[type=radio].w3-radio:checked+.w3-validate{color:w3-theme-l1}

@@ -1,0 +1,12 @@
+$ sudo apt-get install postgresql
+
+$ sudo -i -u postgres (no password)
+
+psql
+
+postgres=# CREATE USER mars;
+postgres=# ALTER ROLE mars WITH CREATEDB;
+
+postgres=# CREATE DATABASE mars OWNER mars;
+
+postgres=# ALTER USER mars WITH ENCRYPTED PASSWORD 'mars';

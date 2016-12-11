@@ -1,0 +1,160 @@
+<div ng-controller="PollsController">
+
+  <!-- alert -->
+  <div id="alertmodal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top"
+      style="margin: auto; margin-top: 100px; width: 300px">
+      <div class="w3-container w3-red w3-padding">
+        <h5>Are you sure...</h5>
+        ...to delete poll {{polltodelete}} ? This will also delete
+        all related sessions, questions and participants.
+        <br><br>
+        <div>
+          <button type="button"
+            class="w3-btn w3-round-small w3-left w3-small w3-ripple w3-light-green"
+            ng-click="alertcancelbuttonhandler()">Cancel</button>
+          <button type="button"
+            class="w3-btn w3-round-small w3-right w3-small w3-ripple w3-orange"
+            ng-click="alertproceedbuttonhandler()">Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="importmodal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-light-grey"
+      style="margin: auto; margin-top: 100px; width: 400px">
+      <div class="">
+        <header class="w3-padding w3-theme-complement-2">
+          <h5>Import poll</h5>
+        </header>
+        <br><br>
+        <div class="w3-padding">
+          <input type="file" id="msds" ng-model="msds" name="msds" accept=".json"/>
+          <br><br><br>
+          <button type="button" class="w3-btn w3-round-small w3-left  w3-ripple w3-small w3-grey"
+            ng-click="importcancelbuttonhandler()">Cancel</button>
+          <button class="w3-btn w3-round-small w3-light-green w3-right"
+            ng-click="msds_update()">
+              import poll
+          </button>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="shownotification" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-light-grey"
+      style="margin: auto; margin-top: 100px; width: 400px">
+      <div class="">
+        <header class="w3-padding w3-theme-complement-2">
+          <h5>Info</h5>
+        </header>
+        <div class="w3-padding w3-theme-complement-1">
+          <br>
+            {{notificationstring}}
+        </div>
+        <div class="w3-padding w3-theme-complement-2">
+          <button class="w3-btn w3-round-small w3-light-green  w3-ripple w3-right"
+            ng-click="notificationbuttonhandler()">
+              Ok
+          </button>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-animate-top"
+    style="max-width:90%; margin: auto; margin-top: 150px;">
+
+    <ul class="w3-navbar w3-large w3-theme-complement-2">
+      <li style="margin-left: 20px"><h3>Available polls</h3></li>
+      <li class="w3-right" style="margin-top: 10px">
+        <button type="button" class="w3-btn w3-round-small w3-ripple w3-light-green"
+        style="margin-right: 20px" ng-click="addpollbuttonhandler()">
+        Create a new poll</button>
+      </li>
+      <li class="w3-right" style="margin-top: 10px">
+        <button type="button" class="w3-btn w3-round-small w3-ripple w3-light-blue"
+        style="margin-right: 20px" ng-click="importpollbuttonhandler()">
+        Import a poll</button>
+      </li>
+    </ul>
+
+    <div class="w3-responsive">
+      <table class='w3-table w3-striped w3-table-all'>
+        <tr>
+          <th>title</th>
+          <th>author name</th>
+          <th>first name</th>
+          <th>questions</th>
+          <th>type</th>
+          <th>id</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr ng-repeat="poll in polls">
+          <td>{{poll.name}}</td>
+          <td>{{poll.authorname}}</td>
+          <td>{{poll.authorfirstname}}</td>
+          <td>{{poll.questioncount}}</td>
+          <td>{{poll.type}}</td>
+          <td>{{poll.id}}</td>
+          <td ng-if="isdiffauthor($index)"></td>
+          <td ng-if="!isdiffauthor($index)">
+            <a href="" ng-click="deletepollbuttonhandler(poll.id)"
+               title="delete">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+          </td>
+          <td ng-if="isdiffauthor($index)"></td>
+          <td ng-if="!isdiffauthor($index)">
+            <a href="{{statics.apiUrl + '?task=getonepoll&pollid='
+              + poll.id + '&mode=export'}}" title="export poll to json file">
+              <i class="fa fa-share" aria-hidden="true"></i>
+            </a>
+          </td>
+          <td>
+            <a href="" ng-click="forkpollbuttonhandler(poll.id)"
+            title="fork : create a fresh copy of this poll for you">
+              <i class="fa fa-code-fork" aria-hidden="true"></i>
+            </a>
+          </td>
+          <td ng-if="isdiffauthor($index)">
+            <a href="" ng-click="editpollbuttonhandler(poll.id, poll.name, false)"
+               title="view">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </a>
+          </td>
+          <td ng-if="!isdiffauthor($index)">
+            <a href="" ng-click="editpollbuttonhandler(poll.id, poll.name, true)"
+               title="edit">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </a>
+          </td>
+          <td>
+            <button type="button" class="w3-btn w3-theme-l4 w3-small w3-round-small"
+              ng-click="createsession(poll, 'normal')">play in normal mode
+            </button>
+          </td>
+          <td>
+            <button type="button" class="w3-btn w3-theme-l3 w3-small w3-round-small"
+              ng-click="createsession(poll, 'group')">play in group mode
+            </button>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+    <br><br>
+
+
+  </div>
+
+</div>

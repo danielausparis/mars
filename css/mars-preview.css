@@ -1,0 +1,104 @@
+
+div.preview {
+  text-align: center;
+  font-size: 12px;
+}
+
+.preview h1 {
+  font-weight: bold;
+  font-size: 110%;
+  padding: 10px;
+  margin-bottom: -15px;
+  margin-top: 0;
+}
+
+.preview p {
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.preview div.tablediv {
+  height: auto;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.preview table {
+  padding-top: 0px;
+}
+
+.preview table.twocols {
+  width:auto;
+  margin: 0 auto;
+  margin-left:3%;
+  margin-right:3%;
+}
+
+.preview table.onecol {
+  width:auto;
+  margin: 0 auto;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.preview td {
+  text-align: left;
+  padding-left: 1%;
+}
+
+.preview td.smallfont {
+  font-size: 80%;
+}
+
+.preview td.twocols {
+  width: 50%;
+  max-width: 50%;
+}
+
+.preview td.onecol {
+  width: 100%;
+}
+
+.preview ol {
+  counter-reset: index;
+  text-indent: -2.5em;
+}
+
+.preview li {
+  list-style-position: outside;
+  list-style-type: none;
+  counter-increment: index;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  text-indent: -2.5em;
+}
+
+.preview li:before {
+    content: counter(index);
+    /*padding: 0 20px 6px;*/
+    padding: 5px 8px 5px 8px;
+    margin-right: 8px;
+    /*vertical-align: top;*/
+    background: #8bc34a;
+    /*line-height:100px;*/
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    text-align:center;
+    font-weight: bold;
+    font-size: 8px;
+    color: black;
+}
+
+img {
+  --scale: 100%;
+}
+
+.preview img {
+  margin: 0px auto;
+  display:block;
+  height: auto;
+  width: auto;
+  max-width: var(--scale);
+  max-height: var(--scale);
+}

@@ -1,0 +1,48 @@
+<div ng-controller="LoginController">
+
+  <div class="w3-card-4 w3-animate-top"
+    style="margin: auto; margin-top: 150px; width: 100%; max-width: 350px;">
+
+    <header class="w3-container w3-theme-complement-2">
+      <h2>Login</h2>
+    </header>
+
+    <form name="loginform">
+      <div class="w3-container w3-theme-light-background">
+        <br>
+
+        <div class="group">
+          <input class="w3-input w3-theme-light-background w3-animate-input"
+            type="text" ng-model="logindata.nicknameoremail" required>
+          <span class="bar"></span>
+          <label class="w3-label w3-validate w3-text-dark-grey">email or nickname</label>
+        </div>
+
+        <div class="group">
+          <input class="w3-input w3-theme-light-background w3-animate-input"
+            type="password" ng-model="logindata.password" required>
+          <span class="bar"></span>
+          <label class="w3-label w3-validate w3-text-dark-grey">password</label>
+        </div>
+        <br>
+
+      </div>
+      <div class="w3-container w3-padding-16 w3-theme-complement-2">
+        <button ng-click="loginbuttonhandler()" type="submit" style="width:40%"
+          class="w3-btn w3-round-small w3-right w3-light-green w3-ripple"
+          ng-disabled="loginform.$invalid">Submit</button>
+        <br>
+        <p class="w3-small">
+          <a href="" ng-click="forgotpasswordbuttonhandler()">forgot password ?</a>
+        </p>
+        <p class="w3-small">
+          new here ? proceed to
+          <a href="" ng-click="registrationbuttonhandler()">registration</a>
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

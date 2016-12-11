@@ -1,0 +1,197 @@
+<div class="w3-margin" ng-controller="ResultController">
+
+  <div class="w3-animate-top" style="margin-top: 100px;">
+
+    <div class="w3-container w3-theme-d5">
+      <ul class="w3-navbar w3-theme-d5">
+        <li>
+          <h4>
+           Results of session {{statics.session.id}}
+           of the {{statics.session.userdate}}
+           in <span class="w3-text-orange">{{statics.session.mode}}</span> mode
+           for poll <i>{{statics.session.poll.name}}</i>,
+           type <span class="w3-text-orange">{{statics.session.poll.type}}</span>
+          </h4>
+        </li>
+        <li class="w3-right" >
+         <h4 ng-click="showresulttable=!showresulttable"
+           style="cursor:pointer;">
+           <i class="fa fa-caret-square-o-down" aria-hidden="true">
+           </i>
+         </h4>
+        </li>
+      </ul>
+    </div>
+
+    <div class="w3-responsive">
+      <table ng-show="showresulttable" class="w3-table w3-striped w3-table-all" style="margin:auto">
+
+        <tr>
+          <th>
+            nickname
+          </th>
+          <th ng-repeat="answer in results[0].answers track by $index" style="text-align:center">
+            Q{{ $index + 1 }}
+          </th>
+          <th>
+            score
+          </th>
+        </tr>
+
+        <tr ng-repeat ="result in results">
+          <div>
+            <td>
+              {{ result.nickname }}
+            </td>
+            <td ng-if="result.answers.length > 0"
+              ng-repeat = "answer in result.answers track by $index"
+              style="text-align:center"
+              ng-class="{ 'w3-theme-l3' : (ispoll()),
+                'w3-red': (!answer), 'w3-light-green': (answer) }">
+              <input type="checkbox" onclick="return false" ng-checked="answer">
+            </td>
+            <td ng-if="result.answers.length == 0"
+              ng-repeat = "answer in results[0].answers track by $index">
+            </td>
+            <td class="w3-theme-complement-1">
+              <b>{{ (result.score * 100).toFixed(0) }}%</b>
+            </td>
+          </div>
+        </tr>
+
+        <tr class="w3-theme-complement-1">
+          <td>
+            <b>Score by question :</b>
+          </td>
+          <td
+            ng-repeat="qstat in qstats track by $index"
+            style="text-align:center">
+            <b>{{ qstat }}%</b>
+          </td>
+          <td>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+
+    <br><br>
+    <div class="w3-container w3-theme-d5">
+      <ul class="w3-navbar w3-theme-d5">
+        <li>
+          <h4>
+           Raw data
+          </h4>
+        </li>
+        <li class="w3-right" >
+         <h4 ng-click="showchoicestable=!showchoicestable"
+           style="cursor:pointer;">
+           <i class="fa fa-caret-square-o-down" aria-hidden="true">
+           </i>
+         </h4>
+        </li>
+      </ul>
+    </div>
+
+    <style media="screen">
+      tr .subtable {
+        background-color: inherit !important;
+        border-bottom: 0px !important;
+      }
+
+      td .subtable {
+        padding: 0 !important;
+      }
+      
+      th .subtable {
+        padding: 0 !important;
+      }
+    </style>
+
+    <div class="w3-responsive">
+      <table ng-show="showchoicestable" class="w3-table w3-striped w3-table-all"
+        style="margin:auto; border-collapse:collapse">
+        <tr class="subtable">
+          <th>
+          </th>
+          <th ng-repeat="rawanswer in rawanswers[0].answers"
+            colspan="{{rawanswer.count}}" style="text-align:center">
+              Q{{ $index + 1 }}
+          </th>
+        </tr>
+        <tr>
+          <th>
+            nickname
+          </th>
+          <td ng-repeat="rawanswer in rawanswers[0].answers"
+            colspan="{{rawanswer.count}}" style="text-align:center">
+            <table>
+              <tr class="subtable">
+                <th class="subtable" ng-repeat="bool in rawanswer.booltable track by $index"
+                  style="text-align:center;">
+                  C{{ $index + 1 }}
+                </th>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr ng-repeat ="rawanswer in rawanswers">
+          <td>
+            {{ rawanswer.nickname }}
+          </td>
+          <td ng-repeat="answer in rawanswer.answers"
+            colspan="{{answer.count}}" style="text-align:center">
+            <table>
+              <tr class="subtable">
+                <td class="subtable" ng-repeat="bool in answer.booltable track by $index"
+                  style="text-align:center">
+                  <input type="checkbox" onclick="return false" ng-checked="bool">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <br><br>
+
+  <div class="w3-animate-top">
+    <div class="w3-container w3-theme-d5">
+      <h4>Analysis by choice</h4>
+    </div>
+    <div class="w3-responsive">
+      <table class="w3-table w3-striped w3-table-all">
+        <tr ng-repeat="cstat in cstats track by $index">
+          <td>
+            <b>Q{{ $index + 1 }}</b>
+          </td>
+          <td>
+            <table class="w3-table">
+              <tr class="subtable">
+                <td class="subtable" ng-repeat="elt in cstat track by $index" style="width: 100px">
+                  <b>choice {{$index+1}} :</b> {{ elt }}%
+                  <!-- <b>{{locallabel[$index]}} :</b> {{ elt }}% -->
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div id="charts" class="w3-container flex-container" style="margin-left:auto">
+
+  </div>
+
+
+</div>

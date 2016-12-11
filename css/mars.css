@@ -1,0 +1,102 @@
+div.mars-bigtitle {
+  font-weight: bold;
+  font-size: 250%;
+}
+
+div.view {
+  text-align: center;
+  font-size: 40px;
+}
+
+.view h1 {
+  font-weight: bold;
+  font-size: 110%;
+  padding: 10px;
+  margin-bottom: -15px;
+  margin-top: 0;
+}
+
+.view p {
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.view table {
+  padding-top: 0px;
+}
+
+.view table.twocols {
+  width:auto;
+  margin: 0 auto;
+  margin-left:3%;
+  margin-right:3%;
+}
+
+.view table.onecol {
+  width:auto;
+  margin: 0 auto;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.view td {
+  text-align: left;
+  padding-left: 1%;
+}
+
+.view td.smallfont {
+  font-size: 80%;
+}
+
+.view td.twocols {
+  width: 48%;
+  max-width: 48%;
+}
+
+.view td.onecol {
+  width: 100%;
+}
+
+.view ol {
+  counter-reset: index;
+  text-indent: -1.8em;
+}
+
+.view li {
+  list-style-position: outside;
+  list-style-type: none;
+  counter-increment: index;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  text-indent: -1.8em;
+}
+
+.view li:before {
+    content: counter(index);
+    /*padding: 0 20px 6px;*/
+    padding: 7px 20px 7px 20px;
+    margin-right: 8px;
+    /*vertical-align: top;*/
+    background: #8bc34a;
+    /*line-height:100px;*/
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    text-align:center;
+    font-weight: bold;
+    font-size: 40px;
+    color: black;
+}
+
+img {
+  --scale: 100%;
+}
+
+.view img {
+  margin: 0px auto;
+  display:block;
+  height: auto;
+  width: auto;
+  max-width: var(--scale);
+  max-height: var(--scale);
+}

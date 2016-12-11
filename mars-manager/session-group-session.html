@@ -1,0 +1,74 @@
+<div ng-controller="TimeController" class="w3-row"
+  style="width:95%; height:95%; margin-top: -55px; margin-left: 20px">
+
+  <!-- pause overlay -->
+  <div id="pausemodal" class="w3-modal" ng-show="paused">
+    <div class="w3-modal-content w3-animate-top"
+      style="margin: auto; margin-top: 150px; width: 300px;">
+      <div class="w3-container w3-center w3-padding w3-orange">
+        <h1 class="w3-xlarge">Paused</h1>
+        <button ng-click="startbuttonhandler()" type="button"
+          class="w3-btn w3-large w3-light-green w3-round-small"
+          title="restart" style="width:100px; margin-bottom: 20px">
+          <i class="fa fa-play w3-large" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- main screen -->
+  <div class="w3-col l11 w3-animate-top" style="height:100%">
+    <div class="w3-card-12" style="height:100%">
+
+        <!-- question zone -->
+        <div class="w3-theme-d4"
+        style="height:90%; display:flex; align-items: center; justify-content: center;">
+
+          <div class="w3-xxlarge w3-text-light-grey w3-center vertical-centered view"
+            style="flex: 1; align-self: stretch;"
+            ng-bind-html="questiontext">
+          </div>
+
+        </div>
+
+        <footer class="w3-container w3-theme-d1" style="height:10%">
+
+          <table style="width:100%">
+            <tr>
+              <td width="40%">
+                <div class="w3-padding">
+                  <button ng-click="pausebuttonhandler()" type="button" style="width:100px"
+                    class="w3-btn w3-orange w3-round-small"
+                    ng-disabled="!enablebuttons"
+                    title="pause">
+                    <i class="fa fa-pause w3-large" aria-hidden="true"></i>
+                  </button>
+                  <button ng-click="stopbuttonhandler()" type="button" style="width:100px"
+                    class="w3-btn w3-red w3-round-small"
+                    title="finish">
+                    <i class="fa fa-stop w3-large w3-text-black" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+              <td width="60%">
+                <div class="w3-progress-container w3-small w3-light-green" style="width:100%">
+                  <div id="progbar" class="w3-progressbar w3-theme-complement-3"></div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </footer>
+
+    </div>
+  </div>
+
+  <!-- ladder -->
+  <!-- <div class="w3-col l1 w3-animate-top w3-padding" ng-controller="LadderController">
+    <div class="w3-card-12">
+      <div id="ladder">
+
+      </div>
+    </div>
+  </div> -->
+</div>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MARS poll app</title>
+
+    <!-- CSS
+    ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <!--<link rel="stylesheet" href="css/w3.css">-->
+    <!-- la version locale est pourrie -->
+    <link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="../css/theme-fvwm.css">
+    <link rel="stylesheet" href="../css/w3-fiddles.css">
+    <link rel="stylesheet" href="../css/font-awesome-4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/flexbox.css">
+    <link rel="stylesheet" href="css/details.css">
+    <link rel="stylesheet" href="../css/mars-preview.css">
+
+    <style type="text/css">
+
+      html, body { height:100%;}
+
+      /*.vertical-centered {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }*/
+
+      body {
+        background-image: url(subtle_carbon.png);
+        background-repeat:repeat;
+      }
+
+    </style>
+  </head>
+
+  <body ng-app="myApp" ng-controller="IndexController">
+
+    <!-- side panel
+    ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <nav class="w3-sidenav w3-theme-complement-1 w3-card-4 w3-animate-left"
+      style="margin-top:0px; width:150px; z-index:5;" id="mySidenav"
+      ng-if="displaysidenav">
+
+      <span class="w3-closenav w3-right"
+        style="margin:10px 15px">
+        <i class="fa fa-times w3-xlarge" ng-click="sidepanelclose()"></i>
+      </span>
+      <br>
+      <br>
+      <div class="w3-large w3-margin">
+        <a style="margin-top: 20px" class="mypanel" ng-click="sidepanelclose()">
+          Home
+        </a>
+        <a style="margin-top: 20px" class="mypanel" ng-click="gotologin()">
+          Register
+        </a>
+        <a style="margin-top: 20px" class="mypanel" ng-click="gotoabout()">
+          About
+        </a>
+      </div>
+
+    </nav>
+
+    <!--  overlay
+    ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <!-- NOTA BENE: ng-if does not work with this :-( -->
+    <div id="myOverlay" class="w3-overlay w3-animate-opacity"
+      ng-click="sidepanelclose()">
+    </div>
+
+    <!--  modal login
+    ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <!-- NOTA BENE: ng-if does not work with this :-( -->
+    <div id="loginmodal" class="w3-modal w3-animate-top">
+      <div class="w3-modal-content w3-card-4"
+        style="max-width:250px; margin: auto !important;">
+
+        <header class="w3-container w3-theme-complement-2">
+          <h2>Registration</h2>
+        </header>
+
+        <form class="w3-container w3-theme-light-background">
+
+          <br>
+
+          <div class="group">
+            <input class="w3-input w3-theme-light-background w3-animate-input"
+              type="text" ng-model="logindata.nickname">
+            <span class="bar"></span>
+            <label class="w3-label w3-validate w3-text-dark-grey">Nickname</label>
+          </div>
+
+          <div class="group">
+            <!-- Numeric Textfield with Floating Label -->
+            <input class="w3-input w3-theme-light-background w3-animate-input"
+              type="text" ng-model="logindata.sessionid">
+            <span class="bar"></span>
+            <label class="w3-label w3-validate w3-text-dark-grey">Session identifier</label>
+          </div>
+
+          <div class="group">
+            <!-- Numeric Textfield with Floating Label -->
+            <input class="w3-input w3-theme-light-background w3-animate-input"
+              type="text" ng-model="logindata.secret">
+            <span class="bar"></span>
+            <label class="w3-label w3-validate w3-text-dark-grey">PIN</label>
+          </div>
+          <br>
+        </form>
+
+        <div class="w3-container w3-border-top w3-padding-16 w3-theme-complement-2">
+          <button ng-click="closeloginmodal()"
+            type="button" class="w3-btn w3-red w3-round-small">Cancel</button>
+          <!-- <span class="w3-margin-left w3-xlarge" ng-bind-html="spinner"></span> -->
+          <button ng-click="loginButtonHandler()" type="button" style="width:40%"
+            class="w3-btn w3-right w3-light-green w3-round-small">Go</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!--  modal about
+    ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <!-- NOTA BENE: ng-if does not work with this :-( -->
+    <div id="aboutmodal" class="w3-modal w3-animate-top">
+      <div class="w3-modal-content w3-card-4"
+        style="max-width:250px; margin: auto !important">
+        <header class="w3-container w3-theme-complement-2">
+          <h2>About</h2>
+        </header>
+        <div class="w3-container w3-theme-complement-1">
+          <br>
+          <p>
+            MARS 0.87
+          </p>
+          <p>
+            (c) Daniel Ranc 2016
+          </p>
+          <br>
+        </div>
+
+        <div class="w3-container w3-border-top w3-padding-16 w3-theme-complement-2">
+          <button ng-click="closeaboutmodal()"
+            type="button" class="w3-btn w3-right w3-light-green w3-round-small">
+            Ok
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!--  splash
+    ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <div id="splashmodal" class="w3-modal w3-animate-opacity">
+      <div class="w3-modal-content" style="margin-top: 30px; width: 100%; max-width: 500px;">
+        <img src="mars-small.jpg" alt="mars exploration"
+          style="width: 100%; max-width: 500px;">
+      </div>
+    </div>
+
+
+
+
+    <!-- header
+    ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <header class="w3-container w3-card-4 w3-theme-d2 w3-top" style="height:52px">
+      <h2 style="margin-top:4px">
+        <i class="w3-opennav fa fa-bars" ng-click="sidepanelopen()"></i>
+        &ensp;
+        <span style="opacity:100% !important">MARS</span>
+        <div class="w3-right">
+          <span class="w3-small" ng-bind-html="statics.displaystatus"></span>
+        </div>
+      </h2>
+    </header>
+
+
+    <!-- dynamic content placeholder
+    ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+    <div ui-view></div>
+
+    <script src="../js/angular.min.js"></script>
+    <script src="../js/angular-ui-router.min.js"></script>
+    <script src="../js/angular-sanitize.min.js"></script>
+    <script src="js/myapp.js"></script>
+    <script src="js/indexcontroller.js"></script>
+    <script src="js/waitingcontroller.js"></script>
+    <script src="js/runningcontroller.js"></script>
+    <script src="js/statics.js"></script>
+    <script src="../js/html.js"></script>
+
+  </body>
+
+</html>
