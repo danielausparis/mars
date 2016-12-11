@@ -12,8 +12,8 @@ MARS requires recent HTML 5 capable browsers. It has been tested on Firefox 48-5
 The MARS back-end is built with PHP and POSTGRESQL. Any decent versions should do (tested ok on Ubuntu 14 LTS which is already quite old at time of writing).
 
 ## Installation
-### Validate prerequisites
-Your Http server/PHP/POSTGRESQL setup should first be assessed and validated. The Http server MUST be configured for HTTPS if you want your system to be acceptable from a security point of view.
+### Assess environment
+Your Http server/PHP/POSTGRESQL stack should first be assessed. The Http server MUST be configured for HTTPS if you want credible security.
 ### Database setup
 1. Create an account for the MARS system in POSTGRESQL and create a database named 'mars'.
 2. The system provides a SQL file "mars-server/dbsetup.sql" for database setup. Execute this file with the above account.
