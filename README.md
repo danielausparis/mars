@@ -8,7 +8,8 @@ MARS is a browser-based Audience Response System dedicated to e.g. teachers, mod
 MARS is published under the GNU GPLv3 open source licence and is free. Polls remain completely under your control and can be shared if, and only if, you choose to do so.
 
 MARS puts the control on the poll material back into your own hands, as opposed to many online commercial products that take away from you the ownership as well as the control over your intellectual property, in order to make profits.
-Vocabulary
+
+### Vocabulary
 
 MARS uses following concepts:
 
