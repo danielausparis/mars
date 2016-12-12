@@ -13,6 +13,12 @@ myApp.controller('HeaderController',
 
     }
 
+    $scope.useradminbuttonhandler = function() {
+
+      $state.go('useradmin');
+      
+    }
+
     $scope.isuserset = function() {
       return user.isuserset();
     }

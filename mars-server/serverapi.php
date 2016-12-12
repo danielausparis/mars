@@ -496,6 +496,58 @@
 
   }
 
+
+  else if ($_GET['task'] === 'getemail') {
+    // parms = {
+    //   task : 'getemail',
+    //   userid : user.getid()
+    // }
+    $userid = $_GET['userid'];
+
+    $req = "SELECT * FROM users WHERE id = '$userid'";
+    $dbanswer = DO_REQUEST($req);
+    $people = count($dbanswer);
+
+    if ($people == 0) {
+      $result = array('error' => true, 'text' => "unknown user");
+      goto wayout;
+    }
+
+    $email = $dbanswer[0]['email'];
+
+    $result = array('error' => false, 'text' => "ok", 'data' => $email);
+    goto wayout;
+
+  }
+
+
+  else if ($_GET['task'] === 'changeemail') {
+    // parms = {
+    //   task : 'changeemail',
+    //   userid : user.getid(),
+    //   email : $scope.email
+    // }
+    $userid = $_GET['userid'];
+    $email = $_GET['email'];
+
+    $req = "SELECT * FROM users WHERE id = '$userid'";
+    $dbanswer = DO_REQUEST($req);
+    $people = count($dbanswer);
+
+    if ($people == 0) {
+      $result = array('error' => true, 'text' => "unknown user");
+      goto wayout;
+    }
+
+    $req = "UPDATE users SET email='$email' WHERE id = '$userid'";
+    $dbanswer = DO_REQUEST($req);
+
+    $result = array('error' => false, 'text' => "ok");
+    goto wayout;
+
+  }
+
+
   else if ($_GET['task'] === 'registeruser') {
 
     //error_log('registeruser : ' . print_r($_GET, true));

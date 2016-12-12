@@ -1,0 +1,51 @@
+<!--  splash
+––––––––––––––––––––––––––––––––––––––––––––––––––-->
+<div ng-controller="UserAdminController">
+
+  <div ng-if="showit" style="margin: auto; margin-top: 150px; width: 100%; max-width: 500px; ">
+
+    <div class="w3-card-4 w3-animate-top w3-theme-light-background" style = "max-width:400px;">
+      <header class="w3-container w3-theme-complement-2">
+        <h2>User administration</h2>
+      </header>
+
+      <br>
+
+      <div class="w3-container">
+
+        <form name="passwordform">
+          <div class="group">
+            <input class="w3-input w3-theme-light-background w3-animate-input"
+              type="password" ng-model="oldpassword" required>
+            <span class="bar"></span>
+            <label class="w3-label w3-validate w3-text-dark-grey">old password</label>
+          </div>
+
+          <div class="group">
+            <input class="w3-input w3-theme-light-background w3-animate-input"
+              type="password" ng-model="newpassword" required>
+            <span class="bar"></span>
+            <label class="w3-label w3-validate w3-text-dark-grey">new password</label>
+          </div>
+
+          <button ng-click="passwordbuttonhandler()" style="width:40%"
+            class="w3-btn w3-round-small w3-right w3-light-green"
+            ng-disabled="passwordform.$invalid">Change password</button>
+        </form>
+
+        <form name="emailform">
+          <div class="group">
+            <input class="w3-input w3-theme-light-background w3-animate-input"
+              type="email" ng-model="email" required>
+            <span class="bar"></span>
+            <label class="w3-label w3-validate w3-text-dark-grey">new email</label>
+          </div>
+          <button ng-click="changeemail()" style="width:40%"
+            class="w3-btn w3-round-small w3-right w3-light-green"
+            ng-disabled="emailform.$invalid">Change email</button>
+        </form>
+        <br><br><br>
+      </div>
+    </div>
+  </div>
+</div>

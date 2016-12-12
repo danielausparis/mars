@@ -73,6 +73,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'results.html'
     })
 
+    .state('useradmin', {
+       url: '/useradmin',
+       templateUrl: 'useradmin.html'
+    })
+
     .state('help', {
        url: '/help',
        templateUrl: 'help.html'
