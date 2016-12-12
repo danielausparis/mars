@@ -530,6 +530,8 @@
     $userid = $_GET['userid'];
     $email = $_GET['email'];
 
+    error_log('changeemail : ' . $email);
+
     $req = "SELECT * FROM users WHERE id = '$userid'";
     $dbanswer = DO_REQUEST($req);
     $people = count($dbanswer);

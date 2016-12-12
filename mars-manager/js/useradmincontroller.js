@@ -12,6 +12,8 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
         newpassword : sha256($scope.newpassword)
       }
 
+      console.log('useradmin changepassword');
+
       $http.get(statics.apiUrl, {params : parms})
         .then(
           function(response) {
@@ -40,6 +42,8 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
         userid : user.getid()
       }
 
+      console.log('useradmin getemail');
+
       $http.get(statics.apiUrl, {params : parms})
         .then(
           function(response) {
@@ -48,8 +52,9 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
             }
             else {
               if (response.data.error == false) {
+
                 $scope.email = response.data.data;
-                $scope.showit= true;
+
               } else {
                 alert('Error : ' + response.data.text);
               }
@@ -66,7 +71,7 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
       parms = {
         task : 'changeemail',
         userid : user.getid(),
-        email : $scope.email
+        email : getscopeemail()
       }
 
       $http.get(statics.apiUrl, {params : parms})
@@ -77,8 +82,10 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
             }
             else {
               if (response.data.error == false) {
+
                 alert('Email changed successfully.');
                 $state.go('home');
+
               } else {
                 alert('Error : ' + response.data.text);
               }
@@ -90,20 +97,27 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
         );
     }
 
+    var getscopeemail = function() {
+      return $scope.email;
+    }
 
+    $scope.cancelbuttonhandler = function() {
+      $state.go('home');
+    }
 
 
     console.log('useradmin');
+
     $scope.statics = statics;
-    $scope.showit = false;
 
     user.verifyuser();
-    console.log('useradmin2');
+
+    var userid = user.getid();
 
     window.document.title = "MARS - user admin";
 
     getemail();
-    console.log('useradmin3');
+
 
   }
 ]);

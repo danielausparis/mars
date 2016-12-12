@@ -2,7 +2,7 @@
 ––––––––––––––––––––––––––––––––––––––––––––––––––-->
 <div ng-controller="UserAdminController">
 
-  <div ng-if="showit" style="margin: auto; margin-top: 150px; width: 100%; max-width: 500px; ">
+  <div style="margin: auto; margin-top: 150px; width: 100%; max-width: 500px; ">
 
     <div class="w3-card-4 w3-animate-top w3-theme-light-background" style = "max-width:400px;">
       <header class="w3-container w3-theme-complement-2">
@@ -33,6 +33,8 @@
             ng-disabled="passwordform.$invalid">Change password</button>
         </form>
 
+        <br><br><br>
+
         <form name="emailform">
           <div class="group">
             <input class="w3-input w3-theme-light-background w3-animate-input"
@@ -44,7 +46,10 @@
             class="w3-btn w3-round-small w3-right w3-light-green"
             ng-disabled="emailform.$invalid">Change email</button>
         </form>
-        <br><br><br>
+        <br><br>
+        <button ng-click="cancelbuttonhandler()"
+          class="w3-btn w3-round-small w3-red">Close</button>
+        <br><br>
       </div>
     </div>
   </div>
