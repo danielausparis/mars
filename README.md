@@ -15,13 +15,25 @@ The MARS back-end is built with PHP and POSTGRESQL. Any decent versions should d
 ### Assess environment
 Your Http server/PHP/POSTGRESQL stack should first be assessed. The Http server MUST be configured for HTTPS if you want credible security.
 ### Database setup
-1. Create an account for the MARS system in POSTGRESQL and create a database named 'mars'.
-2. The system provides a SQL file "mars-server/dbsetup.sql" for database setup. Execute this file with the above account.
-3. Copy the file "mars-server/dbparams.sample.php" to "mars-server/dbparams.php" and edit it to fill in the credentials used at step 1:
+1. Create a 'mars' user in POSTGRESQL from the postgresql role, and create a database named 'mars':
+```
+$ sudo -i -u postgres  # (no password)
+-bash-4.2$ psql
+postgres=# CREATE USER mars;
+postgres=# ALTER ROLE mars WITH CREATEDB;
+postgres=# CREATE DATABASE mars OWNER mars;
+postgres=# ALTER USER mars WITH ENCRYPTED PASSWORD 'xxxxxx';
+postgres=# \q
+```
+2. The system provides a SQL file "mars-server/dbsetup.sql" for database setup. Execute this file while still within the postgresql role:
+```
+-bash-4.2$ psql -d mars -a -f mars/mars-server/dbsetup.sql 
+```
+3. Copy the file "mars-server/dbparams.sample.php" to "mars-server/dbparams.php" and edit it to fill in the password used at step 1:
 ```bash
-cd mars
-cp mars-server/dbparams.sample.php mars-server/dbparams.php
-nano mars-server/dbparams.php
+$ cd mars
+$ cp mars-server/dbparams.sample.php mars-server/dbparams.php
+$ nano mars-server/dbparams.php
 ```
 
 ### Web server setup
