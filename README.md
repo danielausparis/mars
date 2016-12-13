@@ -38,7 +38,13 @@ Your Http server/PHP/POSTGRESQL stack should first be assessed. The Http server 
     $ cp mars-server/dbparams.sample.php mars-server/dbparams.php
     $ nano mars-server/dbparams.php
 ```
+At this stage a small 'testdb.php' file in the mars-server directory can assess if the database access works from local PHP.
 
+4. Remote access
+Access from remote browsers implies to configure firewalls and Postgresql itself accordingly. The reader will find many useful generic procedures on the net. I would however like to mention following trick after some headaches on a CentOs 7 system that would not relay remote connections (see http://stackoverflow.com/questions/23509994/php-on-centos-6-5-can-not-connect-to-postgres-db) :
+```
+# setsebool -P httpd_can_network_connect_db on
+```
 ### Web server setup
 Deploy the MARS file hierarchy (its root is the 'mars' directory) according to your web server environment. 
 ### Test
