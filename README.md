@@ -48,7 +48,7 @@ Deploy the MARS file hierarchy (its root is the 'mars' directory) according to y
     # nano dbparams.php
     ```
     
-At this stage a small 'testdb.php' file in the mars-server directory can assess if the database access works from local PHP:
+    At this stage a small 'testdb.php' file in the mars-server directory can assess if the database access works from local PHP:
 
     ```
     # php testdb.php    # should show the details of user 'admin'
