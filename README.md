@@ -54,7 +54,7 @@ Deploy the MARS file hierarchy (its root is the 'mars' directory) according to y
     # php testdb.php    # should show the details of user 'admin'
     ```
 
-4. Remote access
+### Remote access
 Access from remote browsers implies to configure e.g. firewalls and Postgresql itself accordingly. This is very much related to the host distribution as well as local details. The reader will find many useful generic procedures on the net. I would however like to mention following trick after some headaches on a CentOs 7 system that would not relay remote connections (see http://stackoverflow.com/questions/23509994/php-on-centos-6-5-can-not-connect-to-postgres-db) :
 
     ```
