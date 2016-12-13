@@ -18,7 +18,7 @@ Your Http server/PHP/POSTGRESQL stack should first be assessed. The Http server 
 ### Database setup
 
 1. Create a 'mars' user in POSTGRESQL from the postgres role, and create a database named 'mars':
-
+```
     $ sudo -i -u postgres
     -bash-4.2$ psql
     postgres=# CREATE USER mars;
@@ -27,17 +27,17 @@ Your Http server/PHP/POSTGRESQL stack should first be assessed. The Http server 
     postgres=# ALTER USER mars WITH ENCRYPTED PASSWORD 'xxxxxx';
     postgres=# \q
     -bash-4.2$
-
+```
 2. The system provides a SQL file "mars-server/dbsetup.sql" for database setup. Execute this file while still within the postgres role:
-
+```
     -bash-4.2$ psql -d mars -a -f mars-server/dbsetup.sql 
-
+```
 3. Copy the file "mars-server/dbparams.sample.php" to "mars-server/dbparams.php" and edit it to fill in the password used at step 1:
-
+```
     $ cd mars
     $ cp mars-server/dbparams.sample.php mars-server/dbparams.php
     $ nano mars-server/dbparams.php
-
+```
 
 ### Web server setup
 Deploy the MARS file hierarchy (its root is the 'mars' directory) according to your web server environment. 
