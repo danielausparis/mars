@@ -2,7 +2,7 @@
 
   function getDbParams() {
 
-    return ("host='localhost' dbname='mars' user='xxxxxxxx' password='xxxxxxxx'");
+    return ("host='localhost' dbname='mars' user='mars' password='xxxxxxxx'");
 
   }
 

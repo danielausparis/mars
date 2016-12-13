@@ -550,6 +550,44 @@
   }
 
 
+  else if ($_GET['task'] === 'changepassword') {
+    // parms = {
+    //   task : 'changepassword',
+    //   userid : user.getid(),
+    //   oldpassword : sha256($scope.oldpassword),
+    //   newpassword : sha256($scope.newpassword)
+    // }
+
+    $userid = $_GET['userid'];
+    $oldpassword = $_GET['oldpassword'];
+    $newpassword = $_GET['newpassword'];
+
+    error_log('changepassword ');
+
+    $req = "SELECT * FROM users WHERE id = '$userid'";
+    $dbanswer = DO_REQUEST($req);
+    $people = count($dbanswer);
+
+    if ($people == 0) {
+      $result = array('error' => true, 'text' => "unknown user");
+      goto wayout;
+    }
+
+    if ($oldpassword != $dbanswer[0]['passwordsha256']) {
+      $result = array('error' => true, 'text' => "wrong password");
+      goto wayout;
+    }
+
+    $req = "UPDATE users SET passwordsha256='$newpassword' WHERE id = '$userid'";
+    $dbanswer = DO_REQUEST($req);
+
+    $result = array('error' => false, 'text' => "ok");
+    goto wayout;
+
+  }
+
+
+
   else if ($_GET['task'] === 'registeruser') {
 
     //error_log('registeruser : ' . print_r($_GET, true));
