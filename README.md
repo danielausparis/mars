@@ -47,7 +47,7 @@ Access from remote browsers implies to configure firewalls and Postgresql itself
 ```
 ### Web server setup
 Deploy the MARS file hierarchy (its root is the 'mars' directory) according to your web server environment. 
-### Test
-The system should respond with the URL https://yourmachine.yourdomain/mars/mars-manager. Default login is "admin", password "admin". Change your password.
+### Test and initial setup
+The system should respond with the URL https://yourmachine.yourdomain/mars/mars-manager. Default login is "admin", password "admin". Go to the 'user admin' menu, change your password and provide a working email address, since the new user approval procedure requires email exchanges between MARS and its administrator.
 
 
