@@ -57,9 +57,9 @@ Deploy the MARS file hierarchy (its root is the 'mars' directory) according to y
 ### Remote access
 Access from remote browsers implies to configure e.g. firewalls and Postgresql itself accordingly. This is very much related to the host distribution as well as local details. The reader will find many useful generic procedures on the net. I would however like to mention following trick after some headaches on a CentOs 7 system that would not relay remote connections (see http://stackoverflow.com/questions/23509994/php-on-centos-6-5-can-not-connect-to-postgres-db) :
 
-    ```
-    # setsebool -P httpd_can_network_connect_db on
-    ```
+```
+# setsebool -P httpd_can_network_connect_db on
+```
 
 ### Test and initial setup
 The system should respond with the URL https://yourmachine.yourdomain/mars/mars-manager. Default login is "admin", password "admin". Go to the 'user admin' menu, change your password and provide a working email address, since the approval procedure for new users requires email exchanges between MARS and its administrator.
