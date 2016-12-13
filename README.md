@@ -7,7 +7,7 @@ More info, screenshots etc. [here](https://danielausparis.github.io/mars/)
 
 ## Prerequisites
 ### front-end
-MARS requires recent HTML 5 capable browsers. It has been tested on Firefox 48-50 and Chromium 54.
+MARS requires __really__ recent HTML 5 capable browsers. It has been tested on Firefox 48-50 and Chromium 54.
 ### back-end
 The MARS back-end is built with PHP and Postgresql. Any decent versions should do (tested ok on CentOs 7 and Ubuntu 14 LTS with default PHP and Postgresql).
 
