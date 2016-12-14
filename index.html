@@ -27,7 +27,7 @@
 
     <h2>Introduction</h2>
     <p>
-      MARS is a browser-based
+      MARS is a client-server
       <a target="_blank" href="https://en.wikipedia.org/wiki/Audience_response#Audience_response_systems">
       Audience Response System</a> dedicated to e.g. teachers,
       moderators to support their courses to evaluate knowledge, assess opinions or
@@ -343,6 +343,40 @@
       <br><br>
       <img class="myimage" src="images/screenshots-session-fig4.png" alt="session fig 4"
       style="max-width: 70%"/>
+    </p>
+    <br><br>
+
+    <h2>User management</h2>
+
+    <h3>General principles</h3>
+
+    <p>
+      As of writing (v. 0.87) user management is simplified. Two user roles exist:
+      <ul>
+        <li><b>the administrator</b> who has the specific task of validating
+          new "vanilla" users. The validation process involves a) the candidate
+          user to register through the <i>new user registration</i> screen;
+          b) the system to send an email notification to the administrator in
+          which two links are provided, one for acceptance and one for refusal;
+          and c) in case of acceptance, the system to send a positive email notification
+          to the candidate. In the present version <u>the administrator is
+          immutable</u> (except if you cheat a bit in the database :-)) and is the
+          person having initiated the first login in the system.
+        </li>
+        <li><b>vanilla users</b> who have no further responsibilities.</li>
+      </ul>
+    </p>
+    <p>
+      In all cases the system can only be used by persons having been through the
+      above approval process. This strategy isolates MARS from the many possible
+      external authentification methods (LDAP etc.).
+    </p>
+
+    <h3>Security considerations</h3>
+    <p>
+      Due to the particular http interface between clients and server in the MARS
+      system, man-in-the-middle attacks must be avoided by installing the system
+      on a HTTPS server.
     </p>
 
 
