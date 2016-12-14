@@ -1,6 +1,7 @@
 <?php
 
   require("utils.php");
+  require("mailparams.php");
 
   require("lib/PHPMailer-master/PHPMailerAutoload.php");
 
@@ -672,14 +673,16 @@
 
     $mail = new PHPMailer;
 
+    $mailparams = getMailParams();
+
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->CharSet = 'UTF-8';
-    $mail->Host = 'z.mines-telecom.fr';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'daniel.ranc@telecom-sudparis.eu';                 // SMTP username
-    $mail->Password = 'lapin_00';                           // SMTP password
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
+    $mail->Host = $mailparams['Host'];  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = $mailparams['SMTPAuth'];                               // Enable SMTP authentication
+    $mail->Username = $mailparams['Username'];         // SMTP username
+    $mail->Password = $mailparams['Password'];       // SMTP password
+    $mail->SMTPSecure = $mailparams['SMTPSecure'];   // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = $mailparams['Port'];                               // TCP port to connect to
 
     $mail->setFrom('from@mars.org', 'Mailer');
     $mail->addAddress($adminemail);     // Add a recipient
