@@ -3,7 +3,7 @@
 MARS is a client-server Audience Response System dedicated to e.g. teachers, moderators to support their courses to evaluate knowledge, assess opinions or illustrate concepts, or just for fun!
 
 ## Web page
-More info, screenshots etc. [here](https://danielausparis.github.io/mars/)
+Complete user documentation, screenshots etc. [here](https://danielausparis.github.io/mars/)
 
 ## Prerequisites
 ### front-end
