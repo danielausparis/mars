@@ -1,153 +1,356 @@
-<h2>Introduction</h2>
-<p>
-  MARS is a browser-based
-  <a target="_blank" href="https://en.wikipedia.org/wiki/Audience_response#Audience_response_systems">
-  Audience Response System</a> dedicated to e.g. teachers,
-  moderators to support their courses to evaluate knowledge, assess opinions or
-  illustrate concepts, or just for fun!
-</p>
-<p>
-  MARS is published under the GNU GPLv3 open source licence and is free. Polls
-  remain completely under your control and can be shared if, and only if,
-  you choose to do so.
-</p>
-<p>
-  MARS puts the control on the poll material back into your own hands, as opposed
-  to many online commercial products that take away from you the ownership as well as
-  the control over your intellectual property, in order to make profits.
-</p>
+<!doctype html>
 
-<h2>Vocabulary</h2>
-<p>
-  MARS uses following concepts:
-</p>
-<ul>
-  <li>the poll</li>
-  <p>
-    The poll is a set of questions. A poll can be created and edited in the system
-    and
-    can furthermore be exported/imported (easy JSON files) and shared e.g. via simple
-    email.
-  </p>
-  <li>poll types</li>
-  <p>
-    Polls have a <i>type</i> that is determined at creation time depending
-    on the intention of the poll author. Two types are
-    defined:
-    <ul>
-      <li>the <i>quiz</i> type</li>
-      <p>
-        The quiz type of poll is preferred for evaluation purposes. Results
-        will display falsy/truthy answers and scores that
-        can be directly used for rating purposes.
-      </p>
-      <li>the <i>poll</i> type</li>
-      <p>
-        The poll type of poll (sorry for redundancy) is preferred for
-        opinion assessment or situations where evaluation and scores are
-        not relevant. Results will just display choices without scoring.
-      </p>
-    </ul>
-  </p>
-  <li>the session</li>
-  <p>
-    The <i>session</i> is the live execution of a poll. Sessions consist of
-    question display and score/result evaluation. Sessions are stored and can be
-    retrieved and displayed later for testimony purposes. Moreover, sessions
-    can be re-played, providing cumulative result recording among
-    multiple student groups.
-  </p>
-  <li>the session play modes</li>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>MARS documentation</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
+    <style media="screen">
+      .myimage {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width:70%
+      }
+    </style>
+
+  </head>
+
+  <body class="w3-margin w3-padding" backgroundcolor="#F2EEE4">
+
+    <h1>MARS documentation page</h1>
+
+    <h2>Introduction</h2>
     <p>
-      Sessions can have one of two <i>play modes</i> determined at session start time :
+      MARS is a browser-based
+      <a target="_blank" href="https://en.wikipedia.org/wiki/Audience_response#Audience_response_systems">
+      Audience Response System</a> dedicated to e.g. teachers,
+      moderators to support their courses to evaluate knowledge, assess opinions or
+      illustrate concepts, or just for fun!
+    </p>
+    <p>
+      MARS is published under the GNU GPLv3 open source licence and is free. Polls
+      remain completely under your control and can be shared if, and only if,
+      you choose to do so.
+    </p>
+    <p>
+      MARS puts the control on the poll material back into your own hands, as opposed
+      to many online commercial products that take away from you the ownership as well as
+      the control over your intellectual property.
+    </p>
+
+    <h2>Screenshots</h2>
+    <p>
+      The UI design of MARS is inspired by contemporary flat looks.
+      It uses the w3.css kit, font awesome icons and a number of customizations.
+    </p>
+    <img class="myimage" src="images/screenshots-polls-fig1.png" alt="polls fig 1"/>
+    <p class="w3-small w3-center">
+      - fig. 1: the poll list -
+    </p>
+    <br>
+    <img class="myimage" src="images/screenshots-polls-fig2.png" alt="polls fig 2"/>
+    <p class="w3-small w3-center">
+      - fig. 2: the poll editor -
+    </p>
+    <br>
+    <img class="myimage" src="images/screenshots-polls-fig3.png" alt="polls fig 3"/>
+    <p class="w3-small w3-center">
+      - fig. 3: the question editor -
+    </p>
+    <br>
+    <img class="myimage" src="images/screenshots-session-fig1.png" alt="session fig 1"
+      style="max-width: 50%"/>
+    <p class="w3-small w3-center">
+      - fig. 4: session in group mode as cast on videoprojector; remaining time is seen on
+      the live progress bar on the bottom -
+    </p>
+    <br>
+    <img class="myimage" src="images/screenshots-client-fig1.png" alt="client fig 1"
+    style="max-width: 25%"/>
+    <p class="w3-small w3-center">
+      - fig. 5: the client app during registration, on a smartphone -
+    </p>
+
+
+    <h2>Vocabulary</h2>
+    <p>
+      MARS uses following concepts:
     </p>
     <ul>
-      <li>
-        the <i>normal mode</i> where students will see all
-        questions simultaneously on their client application, thus focusing
-        attention on their
-        terminals. The teacher screen will meanwhile display results, scores and answers
-        in real time. Session duration is under teacher's manual control.
+      <li>the poll</li>
+      <p>
+        The poll is a set of questions. A poll can be created and edited in the system
+        and
+        can furthermore be exported/imported (easy JSON files) and shared e.g. via simple
+        email.
+      </p>
+      <li>poll types</li>
+      <p>
+        Polls have a <i>type</i> that is determined at creation time depending
+        on the intention of the poll author. Two types are
+        defined:
+        <ul>
+          <li>the <i>quiz</i> type</li>
+          <p>
+            The quiz type of poll is preferred for evaluation purposes. Results
+            will display falsy/truthy answers and scores that
+            can be directly used for rating purposes.
+          </p>
+          <li>the <i>poll</i> type</li>
+          <p>
+            The poll type of poll (sorry for redundancy) is preferred for
+            opinion assessment or situations where evaluation and scores are
+            not relevant. Results will just display choices without scoring.
+          </p>
+        </ul>
+      </p>
+      <li>the session</li>
+      <p>
+        The <i>session</i> is the live execution of a poll. Sessions consist of
+        question display and score/result evaluation. Sessions are stored and can be
+        retrieved and displayed later for testimony purposes. Moreover, sessions
+        can be re-played, providing cumulative result recording among
+        multiple student groups.
+      </p>
+      <li>the session play modes</li>
+        <p>
+          Sessions can have one of two <i>play modes</i> determined at session start time :
+        </p>
+        <ul>
+          <li>
+            the <i>normal mode</i> where students will see all
+            questions simultaneously on their client application, thus focusing
+            attention on their
+            terminals. The teacher screen will meanwhile display results, scores and answers
+            in real time. Session duration is under teacher's manual control.
+          </li>
+          <li>
+            the <i>group mode</i> where the teacher screen will display the questions
+            one at a time, so that student attention will be focused collectively
+            on the teacher screen. Their client application will only display
+            choice means for one question at a time. Realtime aspects are in the
+            foreground and question display duration as well as session duration are
+            automated and determined by the poll author during question editing.
+            Results and scores will be displayed at the end of the
+            session.
+          </li>
+        </ul>
       </li>
-      <li>
-        the <i>group mode</i> where the teacher screen will display the questions
-        one at a time, so that student attention will be focused collectively
-        on the teacher screen. Their client application will only display
-        choice means for one question at a time. Realtime aspects are in the
-        foreground and question display duration as well as session duration are
-        automated and determined by the poll author during question editing.
-        Results and scores will be displayed at the end of the
-        session.
+      <p></p>
+      <li>roles and software applications</li>
+        <p>
+          <ul>
+            <li>the <i>teacher role</i> relies on the usage of the <i>MARS manager
+              application</i>.
+            </li>
+            <li>the <i>student role</i> is supported by the <i>MARS client application
+              </i>. The URL of this application is displayed at session start time for
+              all to see.
+            </li>
+          </ul>
+        </p>
       </li>
     </ul>
-  </li>
-  <p></p>
-  <li>roles and software applications</li>
+
+    <h2>Poll management</h2>
+      <p>
+        Polls are managed via the <i>Polls</i> top menu bar option. The screen will
+        display a list of all available polls in your local system. The action icons
+        associated to any given poll will determine following activities :
+      </p>
+      <img class="myimage" src="images/polls-fig1-full.jpg" alt="polls fig 1">
+
+      <h3>Poll creation</h3>
+      <p>
+        To create a new poll, click on the green button labelled "create a new poll"
+        at the top of the list. A pop-up will appear where you can fill in the title
+        of the new poll, as well as choose (mandatory) the poll type (see definition
+        above : quiz or poll type). This will initialize a new, empty poll that will
+        be listed in the poll list. To create questions for this new poll, simply
+        click on its "edit" icon to launch the poll editor (see below).
+      </p>
+
+      <h3>Poll edition</h3>
+      <p>
+        The poll editor allows, much like a slide sorter in presentation software,
+        to add questions, to modify question ordering and to delete questions.
+        Each question composing the poll is depicted along with a number of action
+        buttons :
+      </p>
+      <img class="myimage" src="images/polls-fig2-full.jpg" alt="polls editor fig 1"
+      style="max-width: 60%"/>
+      <p class="w3-small w3-center">
+        - the poll editor -
+      </p>
+
+      <h4>Add questions</h4>
+      <p>
+        To add a new question, click on the "add question" button on the top of the
+        poll editor. This will lauch the question editor with a new question (see below).
+      </p>
+      <h4>Move questions</h4>
+      <p>
+        To move questions use the "move-up/down" buttons as seen on the screenshot
+        above. Their effect is to move the related question one slot up or down
+        in the list of questions.
+      </p>
+      <h4>Delete questions</h4>
+      <p>
+        The DELETE button will remove the related question from the list. Be careful
+        as there is no coming back.
+      </p>
+      <h4>Edit questions</h4>
+      <p>
+        The EDIT button will lauch the question editor with the related question (see below).
+      </p>
+
+      <h3>Question edition</h3>
+      <p>
+        The question editor allows to completely define all aspects of a question,
+        including all texts, optionally an image illustration etc. All actions
+        on the editor are immediately reflected in a live preview.
+      </p>
+      <p>
+        Any question can have one of two available layouts: one column and two
+        columns. The two-colum layout allows to fit in additional text
+        and/or an image. Images are hosted externally (e.g. by image hosting sites).
+        More multimedia contents may be available in future
+        versions (sound, video).
+      </p>
+      <p>
+        The different options and actions are best explained by a
+        picture as well as personal experiments:
+      </p>
+      <img class="myimage" src="images/question-fig1-full.jpg" alt="question editor fig 1"
+      style="max-width: 80%"/>
+      <p class="w3-small w3-center">
+        - the question editor -
+      </p>
+
+      <h3>Poll play</h3>
+      <p>
+        Reminder: polls can be played (i.e. run in front of a student group) in one of two
+        modes explained above: the group mode and the normal mode. The process of
+        poll play is called a session.
+      </p>
+      <p>
+        To start a new session with a given poll, see fig. 1 above : two buttons
+        allow to start a session in one of the two modes.
+      </p>
+
+    <h2>Session lifecycle</h2>
+      <p>
+        A session goes through following states:
+        <ol>
+          <li><b>waiting</b>: this is the initial state.
+              The session is started,
+              but waits for the participants to register on this session with their
+              terminals (i.e. smartphones). Of course this screen should be visible
+              to all via a videoprojector. The registration URL is indicated for
+              all to see., as well as the session id and a PIN used for client identification.
+              The status zone on the right shows in
+              realtime the number of enrolled students. When all students are enrolled, the
+              teacher can run the session by a click on the green start button:
+              <br><br>
+              <img class="myimage" src="images/screenshots-session-fig2.png" alt="session fig 1"
+              style="max-width: 70%"/>
+              <p class="w3-small w3-center">
+                - the session in waiting state (here, in normal mode) -
+              </p>
+          </li>
+          <li><b>running</b>: this is the live execution of the session. Its shape
+            depends on the session mode:
+            <ul>
+              <li><b>in normal mode</b> the screen will stay like the picture
+                above, showing in realtime the results and scores of the students.
+                The teacher can hide the result area in order to avoid student
+                distraction. The students receive all poll questions at once on
+                their terminals. Students can actuate their answers as often as
+                they like. In normal mode the poll timing is entirely under
+                the teacher's control. A click on the red stop button will
+                terminate the run, the session reaching the "finished" state.
+              </li>
+              <li><b>in group mode</b>, on the other hand, the session is
+                completely automated. The screen as showed above disappears and
+                instead, a countdown begins, after which the questions are
+                cast one at a time (see fig. 4 above) for the programmed duration
+                (see question editor above). After all questions have been cast,
+                the session terminates by showing the results. Its state becomes
+                "finished".
+              </li>
+            </ul>
+          </li>
+          <li><b>finished</b> is the state of a session having terminated
+            normally. Its results are stored and can be viewed later.
+          </li>
+          <li><b>cancelled</b> is the state of a session having been terminated
+            manually by the teacher. Although such a session is recorded and
+            can even be restarted, its stored results are perhaps incomplete.
+          </li>
+        </ol>
+      </p>
+      <p>
+        Any type of session in any mode is stored and can be viewed later, but also can be
+        restarted by means of the Session management interface (see below). This
+        allows to conduct a given poll among differents student groups, cumulating
+        the results.
+      </p>
+
+
+    <h2>Session management</h2>
+
     <p>
-      <ul>
-        <li>the <i>teacher role</i> relies on the usage of the <i>MARS manager
-          application</i> (yes correct, actually this page is part of it).
-        </li>
-        <li>the <i>student role</i> is supported by the <i>MARS client application
-          </i>. The URL of this application is displayed at session start time for
-          all to see.
-        </li>
-      </ul>
+      Sessions are managed by means of the Session list interface, attained by the
+      "Sessions" button on the top menu bar.
     </p>
-  </li>
-</ul>
+    <h3>Session list</h3>
+    <p>
+      The following picture summarizes actions related to the Session list:
+      <br><br>
+      <img class="myimage" src="images/sessionlist-fig1-full.jpg" alt="session fig 2"
+      style="max-width: 70%"/>
+    </p>
 
-<style media="screen">
-  .myimg {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%
-  }
-</style>
-
-
-<h2>Poll management</h2>
-  <p>
-    Polls are managed via the <i>Polls</i> top menu bar option. The screen will
-    display a list of all available polls in your local system. The action icons
-    associated to any given poll will determine following activities :
-  </p>
-  <img class="myimg" src="images/polls-fig1-full.jpg" alt="polls fig 1">
-
-  <h3>Poll creation</h3>
-  <p>
-    To create a new poll, click on the green button labelled "create a new poll"
-    at the top of the list. A pop-up will appear where you can fill in the title
-    of the new poll, as well as choose (mandatory) the poll type (see definition
-    above : quiz or poll type). This will initialize a new, empty poll.
-  </p>
-
-  <h3>Poll edition</h3>
-  <p>
-    The poll editor allows, much like a slide sorter in presentation software,
-    to add questions, to modify question ordering and to delete questions.
-  </p>
-
-  <h3>Question edition</h3>
-  <p>
-    TODO
-  </p>
-
-  <h3>Poll usage</h3>
-  <p>
-    TODO
-  </p>
+    <h3>Session results</h3>
+    <p>
+      Session results are available a) after a normal run in normal or group mode, the screen
+      shows already available results as calculated by the server;  b) when selected
+      in the Session list through the "view" icon.
+    </p>
+    <p>
+      Session results have three parts from top to bottom:
+      <ol>
+        <li><b>the score result table</b> showing the results and scores. In a quiz
+          type of poll, results are red/green per person/per question and an individual
+          score is readily available. In a poll type, results are neutral.
+        </li>
+        <li><b>the raw data table</b> which is hidden by default, but can be
+          viewed to discuss individual answers if so desired.
+        </li>
+        <li><b>the charts</b> showing the results graphically, which is particularly
+          useful in the poll type.
+        </li>
+      </ol>
+    </p>
+    <p>
+      The following picture shows a portion of the charts part in a real case:
+      <br><br>
+      <img class="myimage" src="images/screenshots-session-fig4.png" alt="session fig 4"
+      style="max-width: 70%"/>
+    </p>
 
 
-<h2>Session management</h2>
-<h3>Session list</h3>
-<p>
-  TODO
-</p>
+    <h2>Techie section</h2>
+    <p>
+      MARS is a client-server application based on Angular (client side) and PHP
+      (server side). The database is PostGresql. The editor is Atom.
+    </p>
 
-<h2>Techie section</h2>
-<p>
-  MARS is a client-server application based on Angular (client side) and PHP
-  (server side). The database is PostGresql.
-</p>
+  </body>
+</html>
