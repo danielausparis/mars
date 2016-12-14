@@ -368,8 +368,9 @@
     </p>
     <p>
       In all cases the system can only be used by persons having been through the
-      above approval process. This strategy isolates MARS from the many possible
-      external authentification methods (LDAP etc.).
+      above approval process (and by the admin himself, of course) and authenticate
+      locally. This strategy
+      isolates MARS from the many possible external authentification methods (LDAP etc.).
     </p>
 
     <h3>Security considerations</h3>
@@ -377,6 +378,9 @@
       Due to the particular http interface between clients and server in the MARS
       system, man-in-the-middle attacks must be avoided by installing the system
       on a HTTPS server.
+    </p>
+    <p>
+      MARS never sends out passwords in cleartext.
     </p>
 
 
