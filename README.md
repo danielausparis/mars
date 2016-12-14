@@ -71,6 +71,6 @@ Access from remote browsers implies to configure e.g. firewalls and Postgresql i
 ```
 
 ### Test and initial setup
-The system should respond with the URL https://yourmachine.yourdomain/mars/mars-manager. Default login is "admin", password "admin". Go to the 'user admin' menu, change your password and provide a working email address, since the approval procedure for new users requires email exchanges between MARS and its administrator.
+The system should show up at the URL https://yourmachine.yourdomain/mars/mars-manager. Default login is "admin", password "admin". Go to the 'user admin' menu, change your password and provide a working email address, since the approval procedure for new users requires email exchanges between MARS and its administrator.
 
 
