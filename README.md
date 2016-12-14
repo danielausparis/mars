@@ -19,7 +19,7 @@ Your Http server/PHP/Postgresql stack should first be assessed. The Http server 
 ### Clone this repo
 Deploy the MARS file hierarchy (its root is the 'mars' directory) according to your web server environment by cloning the 'master' branch of this repo.
 
-### Database setup
+### Database & SMTP setup
 
 1. Create a 'mars' user in Postgresql from the postgres role, and create a database named 'mars':
 
@@ -53,6 +53,15 @@ Deploy the MARS file hierarchy (its root is the 'mars' directory) according to y
     ```
     # php testdb.php    # should show the details of user 'admin'
     ```
+    
+4. Copy the file "mailparams.sample.php" to "mailparams.php" and edit it to fill in your SMTP email credentials. 
+
+    ```
+    # cp mailparams.sample.php mailparams.php
+    # nano mailparams.php
+    ```
+
+    This step is mandatory since the new user validation process requires email exchanges. Note: the required parameters are    fed into the well-known PHPMailer library which is used here. See PHPMailer documentation for any details.
 
 ### Remote access
 Access from remote browsers implies to configure e.g. firewalls and Postgresql itself accordingly. This is very much related to the host distribution as well as local details. The reader will find many useful generic procedures on the net. I would however like to mention following trick after some headaches on a CentOs 7 system that would not relay remote connections (see http://stackoverflow.com/questions/23509994/php-on-centos-6-5-can-not-connect-to-postgres-db) :
