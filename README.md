@@ -1,6 +1,6 @@
 # MARS - open source Audience Response System
 
-MARS is a browser-based Audience Response System dedicated to e.g. teachers, moderators to support their courses to evaluate knowledge, assess opinions or illustrate concepts, or just for fun!
+MARS is a client-server Audience Response System dedicated to e.g. teachers, moderators to support their courses to evaluate knowledge, assess opinions or illustrate concepts, or just for fun!
 
 ## Web page
 More info, screenshots etc. [here](https://danielausparis.github.io/mars/)
