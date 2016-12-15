@@ -28,7 +28,7 @@ Deploy the MARS file hierarchy (its root is the 'mars' directory) according to y
     -bash-4.2$ psql
     postgres=# CREATE USER mars;
     postgres=# ALTER ROLE mars WITH CREATEDB;
-    postgres=# CREATE DATABASE mars OWNER mars encoding='UTF8' ;
+    postgres=# CREATE DATABASE mars OWNER mars encoding='UTF8' ; # on old versions, add template=template0
     postgres=# ALTER USER mars WITH ENCRYPTED PASSWORD 'xxxxxx';
     postgres=# \q
     -bash-4.2$
