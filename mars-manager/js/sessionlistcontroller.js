@@ -92,6 +92,11 @@ myApp.controller('SessionListController', ["$scope", "$state",
       $state.go('session-start');
     }
 
+    $scope.tolocaldate = function(unixdate) {
+      date = new Date(unixdate * 1000);
+      return date.toLocaleString();
+    }
+
 
     $scope.closebuttonhandler = function() {
       statics.showheader = true;

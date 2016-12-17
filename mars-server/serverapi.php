@@ -15,8 +15,10 @@
     $launcherid = $_GET['launcherid'];
     $authorid = $_GET['authorid'];
 
-    $date = strftime('%Y-%b-%d %k:%M',time());
-    error_log('createsession date : ' . $date);
+    $unixdate = time();
+
+    $printdate = strftime('%Y-%b-%d %k:%M',$unixdate);
+    error_log('createsession date : ' . $printdate);
 
     // création d'un PIN
     $codestr = "";
@@ -35,7 +37,7 @@
     }
 
     // création d'un enregistrement de la table session
-    $request = "INSERT INTO sessions (pollid, datestart, secret, mode, launcherid, authorid) VALUES ('$pollid', '$date', '$code', '$mode', '$launcherid', '$authorid') RETURNING id";
+    $request = "INSERT INTO sessions (pollid, datestart, secret, mode, launcherid, authorid) VALUES ('$pollid', '$unixdate', '$code', '$mode', '$launcherid', '$authorid') RETURNING id";
     DO_REQUEST($request);
     $request = "SELECT id FROM sessions ORDER BY id DESC LIMIT 1";
     $result = DO_REQUEST($request);
@@ -47,7 +49,8 @@
     $request = "SELECT * FROM sessions WHERE id = '$sessionid'";
     $result = DO_REQUEST($request);
     $session = $result[0];
-    $session['userdate'] = date('D j M H:i', strtotime($session['datestart']));
+
+    // $session['userdate'] = date('D j M H:i', strtotime($session['datestart']));
 
     $result = array('error' => false, 'text' => "ok",
       'pollid' => $pollid, 'sessionid' => $sessionid,
@@ -369,12 +372,8 @@
     $sessions = DO_REQUEST($req);
     $csessions = count($sessions);
 
-    // associate author names and sort on them ; take care of dates
+    // associate author names and sort on them
     for ($i=0; $i < $csessions; $i++) {
-
-      // dates, see localization in utils.php
-      $userdate = date('D j M H:i', strtotime($sessions[$i]['datestart']));
-      $sessions[$i]['userdate'] = $userdate;
 
       // authors
       $authorid = $sessions[$i]['authorid'];
@@ -706,7 +705,7 @@
     $req = "SELECT * FROM sessions WHERE id = '$sessionid'";
     $dbanswer = DO_REQUEST($req);
 
-    error_log('getstatus : ' . print_r($dbanswer, true));
+    //error_log('getstatus : ' . print_r($dbanswer, true));
 
     $status = $dbanswer[0]['status'];
     $result = array('error' => false, 'text' => "ok", 'status' => $status);
@@ -816,22 +815,21 @@
 
 
     // recalculer avec normalisation en fonction du nombre de votes, par question.
-    // uniquement les suffrages exprimés!
     for ($i=0; $i < $countquestions; $i++) {
-      // $totalvotes = 0;
-      // for ($j=0; $j < $questions[$i]['nbchoices']; $j++) {
-      //   $totalvotes += $choicestats[$i][$j];
-      // }
-      // //error_log('totalvotes for question ' . $i . ': ' . $totalvotes);
-      // normalisation :
+      $totalvotes = 0;
       for ($j=0; $j < $questions[$i]['nbchoices']; $j++) {
-        //if ($totalvotes > 0) {
-          //$choicestats[$i][$j] = round($choicestats[$i][$j] / $totalvotes * 100);
-          $choicestats[$i][$j] = round($choicestats[$i][$j] / $countpersons * 100);
-        //}
-        // else {
-        //   $choicestats[$i][$j] = 0;
-        // }
+        $totalvotes += $choicestats[$i][$j];
+      }
+      //error_log('totalvotes for question ' . $i . ': ' . $totalvotes);
+      normalisation :
+      for ($j=0; $j < $questions[$i]['nbchoices']; $j++) {
+        if ($totalvotes > 0) {
+          $choicestats[$i][$j] = round($choicestats[$i][$j] / $totalvotes * 100);
+          //$choicestats[$i][$j] = round($choicestats[$i][$j] / $countpersons * 100);
+        }
+        else {
+          $choicestats[$i][$j] = 0;
+        }
       }
     }
 
