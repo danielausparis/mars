@@ -683,7 +683,7 @@
     $mail->SMTPSecure = $mailparams['SMTPSecure'];   // Enable TLS encryption, `ssl` also accepted
     $mail->Port = $mailparams['Port'];                               // TCP port to connect to
 
-    $mail->setFrom('from@mars.org', 'Mailer');
+    $mail->setFrom($mailparams['setFrom'] , 'Mailer');
     $mail->addAddress($adminemail);     // Add a recipient
     $mail->Subject = 'MARS new user request';
     $mail->Body = $message;

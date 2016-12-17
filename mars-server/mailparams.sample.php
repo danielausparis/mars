@@ -11,7 +11,8 @@
       "Username" => "xxx",            // user
       "Password" => "yyy",            // password
       "SMTPSecure" => "tls",          // Enable TLS encryption, `ssl` also accepted
-      "Port" => "587"                 // port
+      "Port" => "587",                // port
+      "setFrom" => "admin@itsmars.org"
     );
 
   }
