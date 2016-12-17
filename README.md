@@ -17,7 +17,7 @@ The MARS back-end is built with PHP and Postgresql. Any decent versions should d
 Your Http server/PHP/Postgresql stack should first be assessed. The Http server MUST be configured for HTTPS if you want credible security.
 
 ### Clone this repo
-Deploy the MARS file hierarchy (its root is the 'mars' directory) according to your web server environment by cloning the 'master' branch of this repo.
+Deploy the MARS file hierarchy (its root is the 'mars' directory) according to your web server environment by cloning the 'master' branch of this repo at the correct/convenient location (e.g. /var/www/html for CentOs).
 
 ### Database & SMTP setup
 
@@ -28,7 +28,7 @@ Deploy the MARS file hierarchy (its root is the 'mars' directory) according to y
     -bash-4.2$ psql
     postgres=# CREATE USER mars;
     postgres=# ALTER ROLE mars WITH CREATEDB;
-    postgres=# CREATE DATABASE mars OWNER mars;
+    postgres=# CREATE DATABASE mars OWNER mars encoding='UTF8' ; # on old versions, add template=template0
     postgres=# ALTER USER mars WITH ENCRYPTED PASSWORD 'xxxxxx';
     postgres=# \q
     -bash-4.2$
