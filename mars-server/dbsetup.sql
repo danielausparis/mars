@@ -148,13 +148,13 @@ ALTER SEQUENCE questions_id_seq OWNED BY questions.id;
 CREATE TABLE sessions (
     id integer NOT NULL,
     pollid integer,
-    datestart timestamp with time zone,
     status character varying(20) DEFAULT 'idle'::character varying,
     secret integer,
     mode character varying(15),
     questionnumber integer,
     launcherid integer DEFAULT 0 NOT NULL,
-    authorid integer DEFAULT 0 NOT NULL
+    authorid integer DEFAULT 0 NOT NULL,
+    datestart bigint DEFAULT 0
 );
 
 
