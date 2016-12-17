@@ -1,6 +1,7 @@
 <?php
 
 require("utils.php");
+require("mailparams.php");
 
 require("lib/PHPMailer-master/PHPMailerAutoload.php");
 
