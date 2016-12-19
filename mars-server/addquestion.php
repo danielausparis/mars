@@ -37,6 +37,7 @@
     // find max number
     $req = "SELECT number FROM questions WHERE pollid = '$pollid' ORDER BY number DESC LIMIT 1";
     $res = DO_REQUEST($req);
+    //error_log('res : ' . print_r($res, true));
     if (count($res) == 0) {
       $max = 0;
     } else {
@@ -44,9 +45,11 @@
     }
 
     $max = $max + 1;
+    error_log('inserting question ' . $max);
 
     $req = "INSERT INTO questions (text, pollid, correctanswer, nbchoices, number) VALUES ('$text', '$pollid', '$correctanswer', '$nbchoices', '$max')";
     DO_REQUEST($req);
+
   }
 
 

@@ -3,9 +3,11 @@ myApp.controller('PollsController',
 
   function($scope, $state, $http, $cookies, user, statics) {
 
-    var getpolls = function() {
+    var uploadpollid;
+    var notificationbuttonaction = null;
+    $scope.notificationstring = '';
 
-      // $scope.spinner = "<i class='fa fa-circle-o-notch fa-spin' aria-hidden='true'></i>";
+    var getpolls = function() {
 
       parms = {
         task : 'getpolls'
@@ -18,7 +20,6 @@ myApp.controller('PollsController',
               alert('getpolls error : ' + response.data.text);
             }
             else {
-              //$scope.spinner = "";
               if (response.data.error == false) {
 
                 $scope.polls = response.data.data;
@@ -35,8 +36,6 @@ myApp.controller('PollsController',
     }
 
     var deletepoll = function(pollid) {
-
-      // $scope.spinner = "<i class='fa fa-circle-o-notch fa-spin' aria-hidden='true'></i>";
 
       parms = {
         task : 'deletepoll',
@@ -94,7 +93,7 @@ myApp.controller('PollsController',
                 // statics.polltype = poll.type;
                 // statics.secret = response.data.secret;
                 // statics.polltitle = poll.name;
-                
+
                 statics.participantnumber = 0;
                 statics.replay = false;
 
@@ -145,11 +144,55 @@ myApp.controller('PollsController',
 
     }
 
+    function one_by_one(objects_array, iterator, callback) {
+      var start_promise = objects_array.reduce(function (prom, object) {
+          return prom.then(function () {
+              return iterator(object);
+          });
+      }, Promise.resolve()); // initial
+      if(callback){
+          start_promise.then(callback);
+      }else{
+          return start_promise;
+      }
+    }
+
+
+    uploadOneQuestion = function(question) {
+
+      return new Promise(function(resolve, reject) {
+
+        parms = {
+          pollid : uploadpollid,
+          json : question.text
+        }
+        //console.log('sending : ' + JSON.stringify(parms, null, 4));
+
+        $http.get(statics.rootUrl + 'addquestion.php', {params : parms})
+          .then(
+            function(response) {
+              if (response.data.error) {
+                alert('Error upload question: ' + response.data.text);
+                reject();
+              }
+              else {
+                resolve();
+              }
+            },
+            function(response) {
+              alert('Network error : ' + JSON.stringify(response, null, 4));
+              reject();
+        });
+
+      });
+    }
+
+
 
     $scope.msds_update = function() {
 
-      var f = document.getElementById('msds').files[0],
-          r = new FileReader();
+      var f = document.getElementById('msds').files[0];
+      var r = new FileReader();
 
       r.onloadend = function(e) {
 
@@ -174,37 +217,23 @@ myApp.controller('PollsController',
                 alert('Error upload poll : ' + response.data.text);
               }
               else {
-                var pollid = response.data.pollid;
+                uploadpollid = response.data.pollid;
 
                 // ok, now create all questions
-                for (question of result.questions) {
 
-                  parms = {
-                    pollid : pollid,
-                    json : question.text
-                  }
-                  //console.log('sending : ' + JSON.stringify(parms, null, 4));
+                one_by_one(result.questions, uploadOneQuestion).then(function(result) {
 
-                  $http.get(statics.rootUrl + 'addquestion.php', {params : parms})
-                    .then(
-                      function(response) {
-                        if (response.data.error) {
-                          alert('Error create question: ' + response.data.text);
-                        }
-                        else {
-                          console.log('success');
-                          document.getElementById('importmodal').style.display='none';
-                          notify('Success : created new poll ' + pollid + '.',
-                            function() {
-                              $state.go('polls', $state.params, {reload: true, inherit: false});
-                            });
-                        }
-                      },
-                      function(response) {
-                        alert('Network error : ' + JSON.stringify(response, null, 4));
-                      }
-                    );
-                }
+                  console.log('success');
+                  document.getElementById('importmodal').style.display='none';
+
+                  notify('Success : created new poll ' + uploadpollid + '.',
+                    function() {
+                      $state.go('polls', $state.params, {reload: true, inherit: false});
+                    }
+                  );
+
+                });
+
               }
             },
             function(response) {
@@ -213,12 +242,16 @@ myApp.controller('PollsController',
           );
       };
 
-      r.readAsText(f);
+      if (f != null) {
+        r.readAsText(f);
+      }
 
     }
 
     var notify = function(text, buttonhandler) {
+      console.log(text);
       $scope.notificationstring = text;
+      $scope.$apply();
       notificationbuttonaction = buttonhandler;
       document.getElementById('shownotification').style.display='block';
     }
@@ -276,6 +309,9 @@ myApp.controller('PollsController',
 
     console.log('polls');
     statics.showheader = true;
+
+    $scope.shownotify = false;
+
     $scope.statics = statics;
 
     document.getElementById('shownotification').style.display='none';
