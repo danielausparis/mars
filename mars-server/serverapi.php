@@ -674,6 +674,7 @@
 
     $mailparams = getMailParams();
 
+
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->CharSet = 'UTF-8';
     $mail->Host = $mailparams['Host'];  // Specify main and backup SMTP servers
