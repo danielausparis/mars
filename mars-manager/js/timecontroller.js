@@ -1,7 +1,7 @@
-myApp.controller('TimeController', ["$scope", "$state", "$http",
+myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
   "$sanitize", "$sce", "user", "statics", "html",
 
-  function($scope, $state, $http, $sanitize, $sce, user, statics, html) {
+  function($rootScope, $scope, $state, $http, $sanitize, $sce, user, statics, html) {
 
     var questions = [];
     $scope.questiontext = '';
@@ -31,6 +31,39 @@ myApp.controller('TimeController', ["$scope", "$state", "$http",
           }
         );
     }
+
+
+    getResults = function() {
+
+      parms = {
+        task : 'getresults',
+        sessionid: statics.session.id,
+        pollid : statics.session.poll.id
+      }
+
+      return new Promise(function(resolve, reject) {
+
+        $http.get(statics.apiUrl, {params : parms})
+          .then(
+            function(response) {
+              if (response.data.error) {
+
+                alert('Erreur getResults: ' + response.data.text);
+              }
+              else {
+
+                statics.ranktable = response.data.ranktable;
+                resolve();
+
+              }
+            },
+            function(response) {
+              alert('erreur réseau : ' + JSON.stringify(response, null, 4));
+            }
+          );
+      });
+    }
+
 
 
     getQuestions = function() {
@@ -165,9 +198,17 @@ myApp.controller('TimeController', ["$scope", "$state", "$http",
               ticker();
             });
           } else {
+
             //console.log('question done');
             $scope.enablebuttons = false;
-            resolve();
+            getResults().then(function() {
+
+              // time to actuate avatars !
+              console.log('EMITTING EVENT');
+              $rootScope.$broadcast('displayavatars');
+
+              resolve();
+            });
           }
         }
 
@@ -218,6 +259,12 @@ myApp.controller('TimeController', ["$scope", "$state", "$http",
     statics.showheader = false;
 
     $scope.statics = statics;
+
+    //statics.showstatics();
+
+    if (statics.session.poll.type=='quiz') {
+      console.log('THIS IS A QUIZ');
+    }
 
     $scope.paused = false;
     $scope.enablebuttons = false;

@@ -124,7 +124,7 @@
     } else {
       // get just the current question
       $number = $session['questionnumber'];
-      error_log('client api: current question: ' . $number);
+      //error_log('client api: current question: ' . $number);
 
       // if questionnumber == -1, it is finished!
       if ($number == -1) {

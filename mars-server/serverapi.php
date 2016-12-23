@@ -674,7 +674,6 @@
 
     $mailparams = getMailParams();
 
-
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->CharSet = 'UTF-8';
     $mail->Host = $mailparams['Host'];  // Specify main and backup SMTP servers
@@ -892,7 +891,29 @@
 
     //error_log('qstats : ' . print_r($qstats, true));
 
-    $result = array('error' => false, 'text' => "ok", 'data' => $persons, 'qstats' => $qstats, 'choicestats' => $choicestats);
+    // build a list of the 5 best persons by score
+    // (only nickname & id)
+    // build the specific list
+    $ranktable = array();
+    for ($i=0; $i < count($persons); $i++) {
+      $ranktable[$i]['nickname'] = $persons[$i]['nickname'];
+      $ranktable[$i]['id'] = $persons[$i]['id'];
+      $ranktable[$i]['score'] = $persons[$i]['score'];
+    }
+
+    // Define the custom sort function & sort
+    function custom_sort($a, $b) {
+      return $a['score'] < $b['score'];
+    }
+    usort($ranktable, "custom_sort");
+
+    // take only the 5 first
+    $ranktable = array_slice($ranktable, 0, 5);
+
+    //error_log('ranktable : ' . print_r($ranktable, true));
+
+    $result = array('error' => false, 'text' => "ok", 'data' => $persons,
+    'qstats' => $qstats, 'choicestats' => $choicestats, 'ranktable' => $ranktable);
     goto wayout;
 
   }

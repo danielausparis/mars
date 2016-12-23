@@ -83,6 +83,7 @@ myApp.controller('SessionController', ["$scope", "$state",
     }
 
     console.log('sessioncontroller, poll ' + statics.pollid);
+    //statics.showstatics();
 
     user.verifyuser();
     // will go to login

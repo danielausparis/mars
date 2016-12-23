@@ -47,7 +47,7 @@ myApp.controller('EditQuestionController', ["$scope", "$state", "$http",
       document.getElementById('questionform').addEventListener("keyup", dealWithKeyboard, true);
       document.getElementById('rightcolform').addEventListener("keyup", dealWithKeyboard, true);
 
-      var elts = document.getElementsByClassName("choicecbx");
+      var elts = document.getElementsByClassName("allcbx");
       for (elt of elts) {
         elt.addEventListener("click", dealWithMouse, true);
       }
@@ -129,7 +129,7 @@ myApp.controller('EditQuestionController', ["$scope", "$state", "$http",
         inputstring = '<span class="inputline" id="inputelt' + n +
           '">answer ' + n + ' : <input type="text" class="choiceinput inputline" size="40"></input>';
         inputstring += '&nbsp;&nbsp;&nbsp; label : <input type="text" class="choicelabel" size="15"></input>';
-        inputstring += '&nbsp;&nbsp;&nbsp; true : <input type="checkbox" class="choicecbx"><br></span>';
+        inputstring += '&nbsp;&nbsp;&nbsp; true : <input type="checkbox" class="choicecbx allcbx"><br></span>';
         document.getElementById('answerzone').insertAdjacentHTML('beforeEnd',inputstring);
         n++;
         updatePreview();
@@ -184,9 +184,13 @@ myApp.controller('EditQuestionController', ["$scope", "$state", "$http",
 
       var correctanswer = 0;
       var p2 = 7;
-      for (field of document.querySelectorAll('.choicecbx')) {
+      var boxes = document.getElementsByClassName('choicecbx');
+      for (field of document.getElementsByClassName('choicecbx')) {
         if (field.checked) {
           correctanswer += Math.pow(2, p2);
+          console.log('1');
+        } else {
+          console.log('0');
         }
         p2--;
       }
@@ -253,18 +257,15 @@ myApp.controller('EditQuestionController', ["$scope", "$state", "$http",
         i++;
       }
 
-      i = 1;
-      var j = 0;
-      var binval = 0;
-      for (field of document.querySelectorAll('.choicecbx')) {
-        j = 8 - i;
+      var boxes = document.getElementsByClassName('choicecbx');
+      for (var i = 0; i < boxes.length; i++) {
+        j = 7 - i;
         binval = 1 << j;
         if ((json.correctanswer & binval) == binval) {
-          field.checked = true;
+          boxes[i].checked = true;
         } else {
-          field.checked = false;
+          boxes[i].checked = false;
         }
-        i++;
       }
 
       if (twocolsoption) {

@@ -139,6 +139,11 @@ myApp.controller('ResultController', ["$scope", "$state", "$http", "statics", "u
         );
     }
 
+    $scope.tolocaldate = function(unixdate) {
+      date = new Date(unixdate * 1000);
+      return date.toLocaleString();
+    }
+
 
     function setupCharts() {
 

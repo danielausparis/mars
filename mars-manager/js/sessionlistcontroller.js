@@ -87,6 +87,7 @@ myApp.controller('SessionListController', ["$scope", "$state",
       statics.session = session;
       statics.showresults = false;
       statics.replay = true;
+      statics.poll = session.poll;
       console.log('going to session-start, session mode=' + session.mode);
       //console.log(JSON.stringify(session, null, 4));
       $state.go('session-start');

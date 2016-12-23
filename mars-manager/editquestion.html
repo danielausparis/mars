@@ -50,18 +50,18 @@
           </select>
           <br>
           text color :
-          <input class="w3-btn w3-dark-grey w3-ripple w3-small-round choicecbx"
+          <input class="w3-btn w3-dark-grey w3-ripple w3-small-round allcbx"
             type="color" ng-model="textcolor" value="{{textcolor}}"
             ng-change="updatePreview()">
           &nbsp;&nbsp;&nbsp;&nbsp;
           background color :
-          <input class="w3-btn w3-dark-grey w3-ripple w3-small-round choicecbx"
+          <input class="w3-btn w3-dark-grey w3-ripple w3-small-round allcbx"
             type="color" ng-model="backgroundcolor" value="{{backgroundcolor}}"
             ng-change="updatePreview()">
           &nbsp;&nbsp;&nbsp;&nbsp;
           <span class="w3-small">
             <button class="w3-btn w3-tiny w3-light-green w3-border w3-border-grey
-              w3-ripple w3-small-round choicecbx"
+              w3-ripple w3-small-round allcbx"
               ng-click="propagatecolors()">propagate</button>
               these colors to all questions
           </span>
@@ -86,11 +86,11 @@
           <div id="answerzone" class="w3-small">
             answer 1 : <input type="text" class="choiceinput inputline" size="40"></input>
             &nbsp;&nbsp;&nbsp;label : <input type="text" class="choicelabel" size="15"></input>
-            &nbsp;&nbsp;&nbsp;true : <input type="checkbox" class="choicecbx">
+            &nbsp;&nbsp;&nbsp;true : <input type="checkbox" class="choicecbx allcbx">
             <br>
             answer 2 : <input type="text" class="choiceinput inputline" size="40"></input>
             &nbsp;&nbsp;&nbsp;label : <input type="text" class="choicelabel" size="15"></input>
-            &nbsp;&nbsp;&nbsp;true : <input type="checkbox" class="choicecbx">
+            &nbsp;&nbsp;&nbsp;true : <input type="checkbox" class="choicecbx allcbx">
             <br>
           </div>
           <br>

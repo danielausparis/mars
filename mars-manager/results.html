@@ -7,7 +7,7 @@
         <li>
           <h4>
            Results of session {{statics.session.id}}
-           of the {{statics.session.userdate}}
+           of the {{tolocaldate(statics.session.datestart)}}
            in <span class="w3-text-orange">{{statics.session.mode}}</span> mode
            for poll <i>{{statics.session.poll.name}}</i>,
            type <span class="w3-text-orange">{{statics.session.poll.type}}</span>
@@ -103,7 +103,7 @@
       td .subtable {
         padding: 0 !important;
       }
-      
+
       th .subtable {
         padding: 0 !important;
       }

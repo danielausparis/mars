@@ -16,6 +16,8 @@ myApp.factory('statics', function() {
   var showresults = false;
   var poll = null;
   var session;
+  var ranktable = null;
+
 
   var showstatics = function() {
     console.log(
@@ -31,7 +33,8 @@ myApp.factory('statics', function() {
       'hasdonesplash:' + hasdonesplash + '\n' +
       'showresults:' + showresults + '\n' +
       'replay:' + replay + '\n' +
-      'session:' + JSON.stringify(this.session, null, 4)
+      'session:' + JSON.stringify(this.session, null, 4) + '\n' +
+      'ranktable:' + JSON.stringify(this.ranktable, null, 4)
     );
   }
 
@@ -51,7 +54,8 @@ myApp.factory('statics', function() {
     replay: replay,
     showresults: showresults,
     poll : poll,
-    session: session
+    session: session,
+    ranktable: ranktable
   };
 
 });

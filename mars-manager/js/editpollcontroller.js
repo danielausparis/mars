@@ -34,13 +34,13 @@ myApp.controller('EditPollController', ["$scope", "$state", "$http",
 
     var setcheckboxesmodel = function(question) {
 
-      correctanswer = question.correctanswer;
+      var correctanswer = question.text.correctanswer;
       question.checkboxesmodel = [];
 
-      for (i = 1; i <= question.nbchoices; i++) {
-        checked = false;
-        j = 8 - i;
-        binval = 1 << j;
+      for (var i = 1; i <= question.nbchoices; i++) {
+        var checked = false;
+        var j = 8 - i;
+        var binval = 1 << j;
         if ((correctanswer & binval) == binval) {
           checked = true;
         }
