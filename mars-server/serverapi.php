@@ -471,15 +471,23 @@
 
     $dbuser = $dbanswer[0];
 
-    if ($dbuser['passwordsha256'] == $encpassword) {
+    // salted hash
+    // combine salt + password
+    $combined = $dbuser['salt'] . $encpassword;
 
-      //error_log('checkuser : ' . print_r($dbuser['isapproved'], true));
+    // hash the combined string
+    $ultimate = hash("sha256", $combined);
+
+
+    if ($dbuser['passwordsha256'] == $ultimate) {
+
       $isapproved = ($dbuser['isapproved'] == 't') ? 1 : 0;
       if ($isapproved) {
+
         // success, setup $_SESSION
         $_SESSION['user'] = $dbuser;
 
-        // eliminate password
+        // eliminate password & salt
         $user = array('name' => $dbuser['name'], 'firstname' => $dbuser['firstname'],
           'id' => $dbuser['id'], 'email' => $dbuser['email'],
           'nickname' => $dbuser['nickname'],);
@@ -577,12 +585,33 @@
       goto wayout;
     }
 
-    if ($oldpassword != $dbanswer[0]['passwordsha256']) {
+    $guy = $dbanswer[0];
+
+    // salted hash
+    // combine salt + password
+    $combined = $guy['salt'] . $oldpassword;
+
+    // hash the combined string
+    $ultimate = hash("sha256", $combined);
+
+    if ($ultimate != $guy['passwordsha256']) {
       $result = array('error' => true, 'text' => "wrong password");
       goto wayout;
     }
 
-    $req = "UPDATE users SET passwordsha256='$newpassword' WHERE id = '$userid'";
+    // generate new salt
+    $saltbytes = openssl_random_pseudo_bytes(32, $isstrong);
+    $salthex = bin2hex($saltbytes);
+
+    // combine salt + password
+    $combined = $salthex . $newpassword;
+
+    // hash the combined string
+    $ultimate = hash("sha256", $combined);
+
+    $req = "UPDATE users SET passwordsha256='$ultimate' WHERE id = '$userid'";
+    $dbanswer = DO_REQUEST($req);
+    $req = "UPDATE users SET salt='$salthex' WHERE id = '$userid'";
     $dbanswer = DO_REQUEST($req);
 
     $result = array('error' => false, 'text' => "ok");
@@ -632,9 +661,22 @@
 
     // (not testing name & firstname collisions)
 
-    $req = "INSERT INTO users (name, firstname, nickname, email, passwordsha256) VALUES ($1, $2, $3, $4, $5)";
-    $args = array($name, $firstname, $nickname, $email, $encpassword);
+    // salted hash https://crackstation.net/hashing-security.htm
+    // generate salt
+    $saltbytes = openssl_random_pseudo_bytes(32, $isstrong);
+    $salthex = bin2hex($saltbytes);
+
+    // combine salt + password
+    $combined = $salthex . $encpassword;
+
+    // hash the combined string
+    $ultimate = hash("sha256", $combined);
+
+    $req = "INSERT INTO users (name, firstname, nickname, email, passwordsha256, salt) VALUES ($1, $2, $3, $4, $5, $6)";
+    $args = array($name, $firstname, $nickname, $email, $ultimate, $salthex);
     $dbanswer = DO_REQUEST_PREP($req, $args);
+
+    // send email
 
     $link = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') .
     '://' . "{$_SERVER['HTTP_HOST']}";

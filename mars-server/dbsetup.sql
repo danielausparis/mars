@@ -190,7 +190,8 @@ CREATE TABLE users (
     name character varying(50) DEFAULT ''::character varying,
     firstname character varying(50) DEFAULT ''::character varying,
     email character varying(60) DEFAULT ''::character varying,
-    passwordsha256 character varying(100) DEFAULT ''::character varying,
+    passwordsha256 character varying(255) DEFAULT ''::character varying,
+    salt character varying(255) DEFAULT ''::character varying,
     nickname character varying(50) DEFAULT ''::character varying,
     isadmin boolean DEFAULT false,
     isapproved boolean DEFAULT false
@@ -301,4 +302,4 @@ ALTER TABLE ONLY users
 
 -- INITIALIZE FIRST USER
 
-INSERT INTO users (name, firstname, nickname, email, passwordsha256, isadmin, isapproved) VALUES ('admin', 'admin', 'admin', 'admin@nodomain.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 't', 't');
+INSERT INTO users (name, firstname, nickname, email, passwordsha256, salt, isadmin, isapproved) VALUES ('admin', 'admin', 'admin', 'admin@nodomain.com', 'b9e4063e51d0c05f180db59d638721d0106abe5cc25cae6a9587ac5bb2d5ebcf', '6dfaa61bfa2ecdc54628fe6e74e8f5b0b6c238102db0ef253c1779e480c89f6e','t', 't');
