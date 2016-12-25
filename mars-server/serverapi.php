@@ -445,18 +445,22 @@
     $encpassword = $_GET['encpassword'];
     $nicknameoremail = $_GET['nicknameoremail'];
 
+    // prepared statements here
+
     if (strlen($nicknameoremail) > 0) {
       // try with email
-      $req = "SELECT * FROM users WHERE email = '$nicknameoremail'";
-      $dbanswer = DO_REQUEST($req);
+      $req = "SELECT * FROM users WHERE email = $1";
+      $args = array($nicknameoremail);
+      $dbanswer = DO_REQUEST_PREP($req, $args);
       $people = count($dbanswer);
       if ($people != 1) {
         // try with nickname
-        $req = "SELECT * FROM users WHERE nickname = '$nicknameoremail'";
-        $dbanswer = DO_REQUEST($req);
+        $req = "SELECT * FROM users WHERE nickname = $1";
+        $args = array($nicknameoremail);
+        $dbanswer = DO_REQUEST_PREP($req, $args);
         $people = count($dbanswer);
         if ($people != 1) {
-          $result = array('error' => true, 'text' => "unknown user");
+          $result = array('error' => true, 'text' => "wrong credentials");
           goto wayout;
         }
       }
@@ -490,7 +494,7 @@
         goto wayout;
       }
     } else {
-      $result = array('error' => true, 'text' => "wrong password");
+      $result = array('error' => true, 'text' => "wrong credentials");
       goto wayout;
     }
 
@@ -606,40 +610,31 @@
       goto wayout;
     }
 
-    $req = "SELECT * FROM users WHERE email = '$email'";
-    $dbanswer = DO_REQUEST($req);
+    // prepared statements
+
+    $req = "SELECT * FROM users WHERE email = $1";
+    $args = array($email);
+    $dbanswer = DO_REQUEST_PREP($req, $args);
     $people = count($dbanswer);
     if ($people > 0) {
       $result = array('error' => true, 'text' => "user already registered");
       goto wayout;
     }
 
-    $req = "SELECT * FROM users WHERE nickname = '$nickname'";
-    $dbanswer = DO_REQUEST($req);
+    $req = "SELECT * FROM users WHERE nickname = $1";
+    $args = array($nickname);
+    $dbanswer = DO_REQUEST_PREP($req, $args);
     $people = count($dbanswer);
     if ($people > 0) {
       $result = array('error' => true, 'text' => "user already registered");
       goto wayout;
     }
 
-    $req = "SELECT * FROM users WHERE name = '$name'";
-    $dbanswer = DO_REQUEST($req);
-    $people = count($dbanswer);
-    if ($people > 0) {
-      $result = array('error' => true, 'text' => "user already registered");
-      goto wayout;
-    }
+    // (not testing name & firstname collisions)
 
-    $req = "SELECT * FROM users WHERE email = '$email'";
-    $dbanswer = DO_REQUEST($req);
-    $people = count($dbanswer);
-    if ($people > 0) {
-      $result = array('error' => true, 'text' => "user already registered");
-      goto wayout;
-    }
-
-    $req = "INSERT INTO users (name, firstname, nickname, email, passwordsha256) VALUES ('$name', '$firstname', '$nickname', '$email', '$encpassword')";
-    $dbanswer = DO_REQUEST($req);
+    $req = "INSERT INTO users (name, firstname, nickname, email, passwordsha256) VALUES ($1, $2, $3, $4, $5)";
+    $args = array($name, $firstname, $nickname, $email, $encpassword);
+    $dbanswer = DO_REQUEST_PREP($req, $args);
 
     $link = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') .
     '://' . "{$_SERVER['HTTP_HOST']}";

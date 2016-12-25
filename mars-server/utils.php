@@ -61,4 +61,46 @@
 
   }
 
+
+
+  function DO_REQUEST_PREP($query, $args) {
+
+    global $dbconn;
+    global $requestResult;
+
+    if (! $dbconn) dbconnect();
+
+    $result = pg_prepare($dbconn, "uselessfiller", $query);
+
+    if($result) {
+
+      $result = pg_execute($dbconn, "uselessfiller", $args);
+
+      if($result) {
+
+        $rows = array();
+        $i = 0;
+        while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+          $rows[$i] = $line;
+          $i++;
+        }
+
+        pg_query($dbconn, "DEALLOCATE uselessfiller;");
+
+        return $rows;
+
+      } else {
+        error_log('DO_REQUEST_PREP failure: ' . pg_last_error($dbconn));
+        pg_query($dbconn, "DEALLOCATE uselessfiller;");
+        die();
+      }
+    } else {
+      error_log('DO_REQUEST_PREP failure: ' . pg_last_error($dbconn));
+      pg_query($dbconn, "DEALLOCATE uselessfiller;");
+      die();
+    }
+
+  }
+
+
 ?>
