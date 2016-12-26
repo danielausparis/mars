@@ -1,6 +1,7 @@
-myApp.controller('LoginController', ["$scope", "$state", "$http", "$cookies", "user", "statics",
+myApp.controller('LoginController', ["$scope", "$state", "$http",
+  "$cookies", "user", "statics", "notification",
 
-  function($scope, $state, $http, $cookies, user, statics) {
+  function($scope, $state, $http, $cookies, user, statics, notification) {
 
     $scope.logindata = {
       nicknameoremail : '',
@@ -25,13 +26,15 @@ myApp.controller('LoginController', ["$scope", "$state", "$http", "$cookies", "u
         .then(
           function(response) {
             if (response.data.error) {
-              alert('Login error: ' + response.data.text);
+
+              //alert('Login error: ' + response.data.text);
+              notification.show('credentials', 'unknown credentials !', 'alert', 'thumbdown');
+
             }
             else {
               // set user info
-              console.log('got user info ' + response.data.user);
+              //console.log('got user info ' + response.data.user);
               user.setuser(response.data.user);
-
               $state.go('home');
 
             }
