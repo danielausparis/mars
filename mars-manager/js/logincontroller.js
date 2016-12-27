@@ -35,9 +35,7 @@ myApp.controller('LoginController', ["$scope", "$state", "$http",
               // set user info
               //console.log('got user info ' + response.data.user);
               user.setuser(response.data.user);
-              //$state.go('home');
-              notification.show('notificationid',
-                'welcome !', 'success', 'thumbup', function() { $state.go('home'); });
+              $state.go('home');
 
             }
           },
