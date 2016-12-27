@@ -1,6 +1,7 @@
-myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics", "user",
+myApp.controller('UserAdminController', ["$scope", "$state", "$http",
+  "statics", "user", "notification",
 
-  function($scope, $state, $http, statics, user) {
+  function($scope, $state, $http, statics, user, notification) {
 
 
     $scope.changepasswordbuttonhandler = function() {
@@ -22,8 +23,9 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
             }
             else {
               if (response.data.error == false) {
-                alert('Change password succeeded, login again');
-                $state.go('login');
+                notification.show('notificationid',
+                  'Password changed. Login again.', 'success',
+                  'thumbup', function() { $state.go('login'); });
               } else {
                 alert('Error : ' + response.data.text);
               }
@@ -83,8 +85,9 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
             else {
               if (response.data.error == false) {
 
-                alert('Email changed successfully.');
-                $state.go('home');
+                notification.show('notificationid',
+                  'Email changed successfully.', 'success',
+                  'thumbup', function() { $state.go('home'); });
 
               } else {
                 alert('Error : ' + response.data.text);
@@ -115,8 +118,9 @@ myApp.controller('UserAdminController', ["$scope", "$state", "$http", "statics",
             else {
               if (response.data.error == false) {
 
-                alert('Password changed successfully.');
-                $state.go('home');
+                notification.show('notificationid',
+                  'Password changed successfully.', 'success',
+                  'thumbup', function() { $state.go('home'); });
 
               } else {
                 alert('Error : ' + response.data.text);

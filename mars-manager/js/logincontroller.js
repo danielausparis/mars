@@ -28,14 +28,16 @@ myApp.controller('LoginController', ["$scope", "$state", "$http",
             if (response.data.error) {
 
               //alert('Login error: ' + response.data.text);
-              notification.show('credentials', 'unknown credentials !', 'alert', 'thumbdown');
+              notification.show('notificationid', 'unknown credentials !', 'alert', 'thumbdown');
 
             }
             else {
               // set user info
               //console.log('got user info ' + response.data.user);
               user.setuser(response.data.user);
-              $state.go('home');
+              //$state.go('home');
+              notification.show('notificationid',
+                'welcome !', 'success', 'thumbup', function() { $state.go('home'); });
 
             }
           },

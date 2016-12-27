@@ -1,31 +1,36 @@
 myApp.factory('notification', function() {
 
   var hidden = true;
+  var _action = null;
 
-  var show = function(notifid, text, type, icon) {
+  var show = function(notifid, text, type, icon, action) {
 
     notifelt = document.getElementById(notifid);
+    _action = action;
     notifelt.addEventListener("click", function() { hide(notifid) });
 
     notifelt.classList.remove('w3-pale-red');
     notifelt.classList.remove('w3-khaki');
+    notifelt.classList.remove('w3-light-green');
 
     if (type == 'alert') {
       notifelt.classList.add('w3-pale-red');
-    }else if (type == 'inform') {
+    } else if (type == 'success') {
+      notifelt.classList.add('w3-light-green');
+    } else if (type == 'inform') {
       notifelt.classList.add('w3-khaki');
-    }else {
+    } else {
       notifelt.classList.add('w3-khaki');
     }
 
     iconstring = '';
     if (icon == 'thumbdown') {
-      iconstring = '<i class="fa fa-thumbs-down w3-xlarge" aria-hidden="true"></i>';
-    }else if (icon == 'thumbup') {
-      iconstring = '<i class="fa fa-thumbs-up w3-xlarge" aria-hidden="true"></i>';
+      iconstring = '<i class="fa fa-thumbs-down w3-xxlarge" aria-hidden="true"></i>';
+    } else if (icon == 'thumbup') {
+      iconstring = '<i class="fa fa-thumbs-up w3-xxlarge" aria-hidden="true"></i>';
     }
 
-    setTimeout(function(){ hide(notifid) }, 5000);
+    setTimeout(function(){ hide(notifid) }, 3000);
 
     notifelt.children[0].innerHTML = iconstring + '&emsp;<b>' + text +'</b>';
 
@@ -62,6 +67,10 @@ myApp.factory('notification', function() {
 
       if (dx == -100) {
         clearInterval(id);
+        if (_action != undefined) {
+          _action();
+          _action = null;
+        }
       } else {
         dx--;
       }
