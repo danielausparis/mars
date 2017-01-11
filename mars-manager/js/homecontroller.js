@@ -1,6 +1,7 @@
-myApp.controller('HomeController', ["$scope", "$state", "$http", "$cookies", "user", "statics",
+myApp.controller('HomeController', ["$scope", "$state", "$http",
+  "$cookies", "user", "statics", "notification",
 
-  function($scope, $state, $http, $cookies, user, statics) {
+  function($scope, $state, $http, $cookies, user, statics, notification) {
 
     // DO NOT MODIFY THIS
     var hascookie = function() {
@@ -15,7 +16,9 @@ myApp.controller('HomeController', ["$scope", "$state", "$http", "$cookies", "us
 
     console.log('home');
 
-    if (! statics.hasdonesplash) {
+    if (! statics.hasdonesplash && user.isuserset()) {
+
+      notification.show('notificationid', 'welcome !', 'success', 'thumbup');
 
       $scope.showsplash = true;
 

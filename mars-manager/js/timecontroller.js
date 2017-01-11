@@ -216,6 +216,8 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
         //console.log('question ' + question.number);
         setQuestionNumber(question.number);
 
+        $scope.questionnumber = question.number;
+
         $scope.questiontext =
           $sce.trustAsHtml('<div class="mars-bigtitle vertical-centered">Question '
           + question.number + '</div>');
@@ -268,6 +270,7 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
 
     $scope.paused = false;
     $scope.enablebuttons = false;
+    $scope.questionnumber = '';
 
     delay(1000)().then(function(){
       getQuestions();
