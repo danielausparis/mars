@@ -681,8 +681,8 @@
     $link = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') .
     '://' . "{$_SERVER['HTTP_HOST']}";
     $link .= dirname($_SERVER['REQUEST_URI']) . '/';
-    $approvelink = $link . "approveuser.php?code=" . $encpassword;
-    $disapprovelink = $link . "disapproveuser.php?code=" . $encpassword;
+    $approvelink = $link . "approveuser.php?code=" . $ultimate;
+    $disapprovelink = $link . "disapproveuser.php?code=" . $ultimate;
 
     // prepare email
     $message = "\r\n";
@@ -720,7 +720,7 @@
     $mail->SMTPSecure = $mailparams['SMTPSecure'];   // Enable TLS encryption, `ssl` also accepted
     $mail->Port = $mailparams['Port'];                               // TCP port to connect to
 
-    $mail->setFrom($mailparams['setFrom'] , 'Mailer');
+    $mail->setFrom($mailparams['setFrom'] , 'Mars Admin');
     $mail->addAddress($adminemail);     // Add a recipient
     $mail->Subject = 'MARS new user request';
     $mail->Body = $message;

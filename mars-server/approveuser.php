@@ -58,7 +58,7 @@ $mail->Username = $mailparams['Username'];         // SMTP username
 $mail->Password = $mailparams['Password'];       // SMTP password
 $mail->SMTPSecure = $mailparams['SMTPSecure'];   // Enable TLS encryption, `ssl` also accepted
 $mail->Port = $mailparams['Port'];                               // TCP port to connect to
-$mail->setFrom($mailparams['setFrom'] , 'Mailer');
+$mail->setFrom($mailparams['setFrom'] , 'Mars Admin');
 
 $mail->addAddress($guy['email']);     // Add a recipient
 $mail->Subject = 'MARS approval';
