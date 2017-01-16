@@ -1,6 +1,14 @@
 <div ng-controller="TimeController" class="w3-row"
   style="width:95%; height:95%; margin-top: -55px; margin-left: 20px">
 
+  <!-- sound player -->
+  <div class="" style="display:none">
+
+    <audio id="ticking" src="sounds/ticking.mp3" preload="auto" loop="true"></audio>
+    <audio id="gong" src="sounds/gong.mp3" preload="auto"></audio>
+
+  </div>
+
   <!-- pause overlay -->
   <div id="pausemodal" class="w3-modal" ng-show="paused">
     <div class="w3-modal-content w3-animate-top"
@@ -50,9 +58,9 @@
                     <i class="fa fa-stop w3-large w3-text-black" aria-hidden="true"></i>
                   </button>
                   &emsp;&emsp;
-                  <h2 class="w3-text-yellow" style="display:inline" ng-if="enablebuttons">
+                  <h4 class="w3-text-yellow" style="display:inline" ng-if="enablebuttons">
                     <b>Q {{questionnumber}}</b>
-                  </h2>
+                  </h4>
                 </div>
               </td>
               <td width="60%">

@@ -225,6 +225,7 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
           $scope.questiontext = $sce.trustAsHtml(html.genHtmlfromJson(question.text));
           delay(2000)().then(function(){
             ticker();
+            playticker();
           });
         });
 
@@ -234,6 +235,12 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
     var getpausevalue = function() {
       return $scope.paused;
     }
+
+    var playticker = function() {
+      var v = document.getElementsByTagName("ticker")[0];
+      v.play();
+    }
+
 
     $scope.pausebuttonhandler = function() {
       $scope.paused = true;
