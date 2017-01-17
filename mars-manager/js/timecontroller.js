@@ -15,7 +15,7 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
         sessionid : statics.session.id
       }
 
-      console.log('timecontroller : setstatus ******************** ' + status);
+      //console.log('timecontroller : setstatus ******************** ' + status);
 
       $http.get(statics.apiUrl, {params : parms})
         .then(
@@ -96,6 +96,10 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
 
                   $scope.questiontext =
                     $sce.trustAsHtml('<div class="mars-bigtitle vertical-centered">Poll finished !</div>');
+
+                  stopticking();
+                  playgong();
+                  
                   delay(3000)().then(function() {
                     statics.showheader = true;
                     $state.go('groupsessionresults');
@@ -200,6 +204,9 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
           } else {
 
             //console.log('question done');
+            stopticking();
+            playgong();
+
             $scope.enablebuttons = false;
             getResults().then(function() {
 
@@ -224,8 +231,8 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
         delay(3000)().then(function(){
           $scope.questiontext = $sce.trustAsHtml(html.genHtmlfromJson(question.text));
           delay(2000)().then(function(){
+            playticking();
             ticker();
-            playticker();
           });
         });
 
@@ -236,8 +243,18 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
       return $scope.paused;
     }
 
-    var playticker = function() {
-      var v = document.getElementsByTagName("ticker")[0];
+    var playticking = function() {
+      var v = document.getElementById("ticking");
+      v.play();
+    }
+
+    var stopticking = function() {
+      var v = document.getElementById("ticking");
+      v.pause();
+    }
+
+    var playgong = function() {
+      var v = document.getElementById("gong");
       v.play();
     }
 
