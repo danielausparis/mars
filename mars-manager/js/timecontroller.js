@@ -99,7 +99,7 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
 
                   stopticking();
                   playgong();
-                  
+
                   delay(3000)().then(function() {
                     statics.showheader = true;
                     $state.go('groupsessionresults');
@@ -251,10 +251,12 @@ myApp.controller('TimeController', ["$rootScope", "$scope", "$state", "$http",
     var stopticking = function() {
       var v = document.getElementById("ticking");
       v.pause();
+      v.currentTime = 0;
     }
 
     var playgong = function() {
       var v = document.getElementById("gong");
+      v.currentTime = 0;
       v.play();
     }
 
